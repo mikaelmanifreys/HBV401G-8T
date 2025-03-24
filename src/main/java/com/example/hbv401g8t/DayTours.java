@@ -1,6 +1,16 @@
 package com.example.hbv401g8t;
+
 public class DayTours {
-    public static void main(String[] args) {
+    private int tourId;
+    private String name;
+    private String location;
+    private List<TimeSlot>;
+
+    public DayTours getTourData() {
         
+    }
+
+    public static void main(String[] args) {
+
     }
 }

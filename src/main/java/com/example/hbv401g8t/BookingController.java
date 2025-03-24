@@ -1,14 +1,32 @@
 package com.example.hbv401g8t;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import java.util.List;
 
 public class BookingController {
-    @FXML
-    private Label welcomeText;
+    private List<TripPackage> tripPackages;
+    private List<Booking> bookings;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public Booking bookTrip(Customer customer, TripPackage tripPackage) {
+
+    }
+
+    public boolean cancelBooking(int bookingId) {
+
+    }
+
+    public void addFlightToPackage(int packageId, Flights flight) {
+
+    }
+
+    public void addHotelToPackage(int packageId, Hotels hotel) {
+
+    }
+
+    public void addDayTourToPackage(int packageId, DayTours dayTour) {
+
+    }
+
+    public List<TripPackage> getAvailableTripPackages() {
+        
     }
 }
