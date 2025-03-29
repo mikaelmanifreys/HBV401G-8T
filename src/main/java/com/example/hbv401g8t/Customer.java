@@ -24,9 +24,7 @@ public class Customer {
     }
 
     public void viewBooking() {
-        for (Booking booking : bookings) {
-            System.out.println("Booking for: ");
-        }
+
     }
 
     public void cancelBooking() {

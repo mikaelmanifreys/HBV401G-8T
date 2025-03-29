@@ -33,14 +33,7 @@ public class TripPlanner {
 
 
     public void viewTripDetails(int packageId) {
-        if (packageId >= 0 && packageId < tripPackages.size()) {
-            TripPackage pkg = tripPackages.get(packageId);
-            System.out.println("Destination: " + pkg.getDestination());
-            System.out.println("Price: " + pkg.getPrice());
-            for (Flights f : pkg.getFlights()) {
-                System.out.println(f.getFlightDetails());
-            }
-        }
+
     }
 
     public void createTripPackage(String destination, double price) {

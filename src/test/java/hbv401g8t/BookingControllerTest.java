@@ -20,7 +20,7 @@ public class BookingControllerTest {
         controller.getAvailableTripPackages().clear();
         controller.getAvailableTripPackages().add(new TripPackage("Paris", 1200));
         controller.getAvailableTripPackages().add(new TripPackage("New York", 1800));
-        testCustomer = new Customer("Alice", 1, "alice@test.com");
+        testCustomer = new Customer("Jon", 1, "Jon@test.com");
     }
 
     @Test
