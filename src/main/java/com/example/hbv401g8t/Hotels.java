@@ -7,11 +7,25 @@ public class Hotels {
     private int availableRooms;
     private int bookedRooms;
 
+
+    public Hotels(String name, String location, int hotelId, int availableRooms, int bookedRooms) {
+        this.hotelId = hotelId;
+        this.name = name;
+        this.location = location;
+        this.availableRooms = availableRooms;
+        this.bookedRooms = bookedRooms;
+
+    }
+
     public boolean checkAvailability() {
-        return true;
+        if (availableRooms > 0) {
+            return true;
+        }
+        return false;
     }
 
-    public static void main(String[] args) {
-
+    public String getHotelDetails(){
+        return "Hotel " + name + " ID: " + hotelId + " Location: " + location + " Rooms available? " + checkAvailability();
     }
+
 }
