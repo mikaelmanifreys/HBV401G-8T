@@ -11,6 +11,9 @@ public class BookingControllerTest {
     private BookingController controller;
     private Customer testCustomer;
 
+    Flights flight = new Flights("Flug123", "Icelandair", "Paris", "18:00", "21:00");
+
+
     @Before
     public void setUp() {
         controller = new BookingController(new TripPlanner());
@@ -22,20 +25,18 @@ public class BookingControllerTest {
 
     @Test
     public void testAddFlightToPackage() {
-        Flights flight = new Flights("XY123", "Icelandair", "Paris", "18:00", "21:00");
         controller.addFlightToPackage(0, flight);
         TripPackage trip = controller.getAvailableTripPackages().get(0);
         assertEquals(1, trip.getFlights().size());
-        assertEquals("XY123", trip.getFlights().get(0).getFlightDetails().split(" ")[1]);
+        assertEquals("Flug123", trip.getFlights().get(0).getFlightDetails().split(" ")[1]);
+        assertEquals("Paris", trip.getDestination());
     }
 
     @Test
-    public void testAddHotelToPackage() {
-        Hotels hotel = new Hotels("Test Hotel", "Paris", 1, 10, 30);
-        controller.addHotelToPackage(0, hotel);
+    public void testAddFlightToPackageFail() {
+        controller.addFlightToPackage(1, flight);
         TripPackage trip = controller.getAvailableTripPackages().get(0);
-        assertEquals(1, trip.getHotel().size());
-        assertEquals(1, );
+        assertEquals("New York", trip.getDestination());
     }
-
 }
+
