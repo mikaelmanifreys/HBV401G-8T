@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class BookingControllerTest {
 
     private BookingController controller;
-    
+    private Customer testCustomer;
 
     Flights flight = new Flights("Flug123", "Icelandair", "Paris", "18:00", "21:00");
 
