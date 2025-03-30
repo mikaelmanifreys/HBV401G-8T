@@ -6,11 +6,17 @@ public class Booking {
     private TripPackage trip;
     private String status;
 
+    public Booking(Customer customer, TripPackage trip) {
+        this.customer = customer;
+        this.trip = trip;
+    }
+
+
     public boolean processPayment() {
         return true;
     }
 
-    public static void main(String[] args) {
-
+    public TripPackage getTrip() {
+        return trip;
     }
 }

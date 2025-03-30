@@ -5,12 +5,17 @@ public class Flights {
     private String airline;
     private String departureTime;
     private String arrivalTime;
+    private String destination;
 
-    public Flights getFlightDetails() {
-        
+    public Flights (String flightId, String airline, String destination, String departureTime, String arrivalTime){
+        this.flightId = flightId;
+        this.airline = airline;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.destination = destination;
     }
 
-    public static void main(String[] args) {
-
+    public String getFlightDetails() {
+        return "flight " + flightId + " with " + airline + " on " + departureTime + " to " + arrivalTime;
     }
 }
