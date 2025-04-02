@@ -1,11 +1,16 @@
 package com.example.hbv401g8t;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 import java.util.List;
 
 public class BookingController {
+    public Button fxStadfestingartakki;
+    public Label fxStadfestingartexti;
     private List<TripPackage> tripPackages;
     private List<Booking> bookings;
     private TripPlanner tripPlanner;
@@ -65,5 +70,17 @@ public class BookingController {
 
     public List<TripPackage> getAvailableTripPackages() {
         return tripPlanner.getTripPackages();
+    }
+
+    public void StadfestaVal(ActionEvent actionEvent) {
+        String flight = fxFlights.getSelectionModel().getSelectedItem();
+        String hotel = fxHotels.getSelectionModel().getSelectedItem();
+        String tour = fxDayTours.getSelectionModel().getSelectedItem();
+
+        if (flight == null || hotel == null || tour == null) {
+            fxStadfestingartexti.setText("Vinsamlegast veldu úr öllum flokkum.");
+        } else {
+            fxStadfestingartexti.setText("Valið: " + flight + ", " + hotel + ", " + tour);
+        }
     }
 }

@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<VBox fx:controller="com.example.hbv401g8t.BookingController" maxHeight="-Infinity" maxWidth="-Infinity"
-      minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="604.0"
-      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0"
+      prefWidth="604.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.hbv401g8t.BookingController">
     <children>
         <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
@@ -19,6 +19,12 @@
                 <ListView fx:id="fxDayTours" prefHeight="247.0" prefWidth="200.0"/>
             </children>
         </HBox>
-        <Button mnemonicParsing="false" prefHeight="86.0" prefWidth="137.0" text="Staðfesta val"/>
+        <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <Button fx:id="fxStadfestingartakki" mnemonicParsing="false" prefHeight="96.0" prefWidth="126.0"
+                        text="Staðfesta val" onAction="#StadfestaVal"/>
+                <Label fx:id="fxStadfestingartexti" prefHeight="93.0" prefWidth="479.0"/>
+            </children>
+        </HBox>
     </children>
 </VBox>
