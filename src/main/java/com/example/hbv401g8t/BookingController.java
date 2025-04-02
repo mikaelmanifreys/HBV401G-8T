@@ -1,5 +1,8 @@
 package com.example.hbv401g8t;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+
 import java.util.List;
 
 public class BookingController {
@@ -7,12 +10,40 @@ public class BookingController {
     private List<Booking> bookings;
     private TripPlanner tripPlanner;
 
+    @FXML
+    private ListView<String> fxFlights;
+    @FXML
+    private ListView<String> fxHotels;
+    @FXML
+    private ListView<String> fxDayTours;
+
+    @FXML
+    public void initialize() {
+        fxFlights.getItems().addAll("Reykjavík → Akureyri", "Reykjavík → Egilsstaðir");
+        fxHotels.getItems().addAll("Hótel Akureyri", "Hótel Austurland");
+        fxDayTours.getItems().addAll("Hvalaskoðun", "Gönguferð í fjöllum");
+    }
+
+
+    public BookingController() {
+
+    }
+
+
+    @FXML
+    private void stadfestaValHandler() {
+        String flight = fxFlights.getSelectionModel().getSelectedItem();
+        String hotel = fxHotels.getSelectionModel().getSelectedItem();
+        String tour = fxDayTours.getSelectionModel().getSelectedItem();
+
+        System.out.println("Confirmed: " + flight + ", " + hotel + ", " + tour);
+    }
+
     public BookingController(TripPlanner tripPlanner) {
         this.tripPlanner = tripPlanner;
     }
 
     //public boolean cancelBooking(int bookingId) {}
-
 
 
     public void bookTrip(Customer customer, int packageId) {
