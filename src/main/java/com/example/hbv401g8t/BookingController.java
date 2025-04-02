@@ -3,9 +3,11 @@ package com.example.hbv401g8t;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class BookingController {
@@ -14,6 +16,8 @@ public class BookingController {
     private List<TripPackage> tripPackages;
     private List<Booking> bookings;
     private TripPlanner tripPlanner;
+    private LocalDate fraDate;
+    private LocalDate tilDate;
 
     @FXML
     private ListView<String> fxFlights;
@@ -21,6 +25,12 @@ public class BookingController {
     private ListView<String> fxHotels;
     @FXML
     private ListView<String> fxDayTours;
+    @FXML
+    private DatePicker fxFraDate;
+    @FXML
+    private DatePicker fxTilDate;
+    @FXML
+    private Label fxDateLabel;
 
     @FXML
     public void initialize() {
@@ -68,6 +78,17 @@ public class BookingController {
         tripPlanner.addDayTourToPackage(packageId, dayTour);
     }
 
+    public void onDateSubmit(){
+        this.tilDate = fxTilDate.getValue();
+        this.fraDate = fxFraDate.getValue();
+
+        if (fraDate == null || tilDate == null){
+            fxDateLabel.setText("Vinsamlegast veldu dagsetningu!");
+        } else{
+            System.out.println("Ferð frá: " + fraDate +" til: " + tilDate);
+        }
+    }
+
     public List<TripPackage> getAvailableTripPackages() {
         return tripPlanner.getTripPackages();
     }
@@ -77,10 +98,10 @@ public class BookingController {
         String hotel = fxHotels.getSelectionModel().getSelectedItem();
         String tour = fxDayTours.getSelectionModel().getSelectedItem();
 
-        if (flight == null || hotel == null || tour == null) {
+        if (flight == null || hotel == null || tour == null || fraDate == null || tilDate == null) {
             fxStadfestingartexti.setText("Vinsamlegast veldu úr öllum flokkum.");
         } else {
-            fxStadfestingartexti.setText("Valið: " + flight + ", " + hotel + ", " + tour);
+            fxStadfestingartexti.setText("Valið: " + flight + ", " + hotel + ", " + tour + " frá: " + fraDate + " til: " + tilDate);
         }
     }
 }
