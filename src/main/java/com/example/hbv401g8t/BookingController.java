@@ -2,17 +2,21 @@ package com.example.hbv401g8t;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
 public class BookingController {
     public Button fxStadfestingartakki;
     public Label fxStadfestingartexti;
+    public Button fxSkraInn;
+    public TextField fxNotandanafn;
+    public TextField fxLykilord;
     private List<TripPackage> tripPackages;
     private List<Booking> bookings;
     private TripPlanner tripPlanner;
@@ -78,14 +82,14 @@ public class BookingController {
         tripPlanner.addDayTourToPackage(packageId, dayTour);
     }
 
-    public void onDateSubmit(){
+    public void onDateSubmit() {
         this.tilDate = fxTilDate.getValue();
         this.fraDate = fxFraDate.getValue();
 
-        if (fraDate == null || tilDate == null){
+        if (fraDate == null || tilDate == null) {
             fxDateLabel.setText("Vinsamlegast veldu dagsetningu!");
-        } else{
-            System.out.println("Ferð frá: " + fraDate +" til: " + tilDate);
+        } else {
+            System.out.println("Ferð frá: " + fraDate + " til: " + tilDate);
         }
     }
 
@@ -102,6 +106,20 @@ public class BookingController {
             fxStadfestingartexti.setText("Vinsamlegast veldu úr öllum flokkum.");
         } else {
             fxStadfestingartexti.setText("Valið: " + flight + ", " + hotel + ", " + tour + " frá: " + fraDate + " til: " + tilDate);
+        }
+    }
+
+    public void SkraInn(ActionEvent actionEvent) {
+        if (fxNotandanafn.getText().equals("admin") && fxLykilord.getText().equals("admin")) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Administrator.fxml"));
+                Stage stage = (Stage) fxSkraInn.getScene().getWindow();
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
