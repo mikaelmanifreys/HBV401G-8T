@@ -5,12 +5,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class AdministratorController {
     public Button fxTilBakaTakki;
+    public Button fxBaetaVidTakki;
+    public DatePicker fxHotelDagsetningTil;
+    public DatePicker fxHotelDagsetningFra;
+    public TextField fxHotelStadsetning;
+    public TextField fxHotelNafn;
+    public TextField fxFlugBrottfararstadur;
+    public TextField fxFlugKomustaður;
+    public DatePicker fxFlugDagsetning;
+    public DatePicker fxDayTourDagsetning;
 
     @FXML
     public void initialize() {
@@ -31,5 +42,9 @@ public class AdministratorController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void baetaVid(ActionEvent actionEvent) {
+        
     }
 }

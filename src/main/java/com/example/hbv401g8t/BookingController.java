@@ -17,6 +17,7 @@ public class BookingController {
     public Button fxSkraInn;
     public TextField fxNotandanafn;
     public TextField fxLykilord;
+    public Button fxDateSubmit;
     private List<TripPackage> tripPackages;
     private List<Booking> bookings;
     private TripPlanner tripPlanner;

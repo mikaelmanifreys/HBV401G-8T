@@ -5,6 +5,7 @@ public class Administrator {
     private String name;
 
     public void updateFlights() {
+        
 
     }
 
@@ -33,7 +34,7 @@ public class Administrator {
     }
 
     public void removeTripPackage(int packageId) {
-        
+
     }
 
 }
