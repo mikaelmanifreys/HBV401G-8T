@@ -4,13 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TripPlanner {
+    private static TripPlanner instance = null;
     private String passengerName;
     private int numberOfPassengers;
     private int tripLength;
     private List<TripPackage> tripPackages;
 
-    public TripPlanner(){
+    public TripPlanner() {
         tripPackages = new ArrayList<>();
+    }
+
+    public static TripPlanner getInstance() {
+        if (instance == null) {
+            instance = new TripPlanner();
+        }
+        return instance;
     }
 
     public void addFlightToPackage(int packageId, Flights flight) {
@@ -44,4 +52,7 @@ public class TripPlanner {
         return tripPackages;
     }
 
+    public void addTripPackage(TripPackage pkg) {
+        tripPackages.add(pkg);
+    }
 }

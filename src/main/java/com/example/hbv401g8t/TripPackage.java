@@ -39,11 +39,16 @@ public class TripPackage {
     public double getPrice() {
         return price;
     }
+
     public String getDestination() {
         return destination;
     }
 
-    public List<Hotels> getHotel(){
+    public List<Hotels> getHotel() {
         return hotels;
+    }
+
+    public List<DayTours> getDayTours() {
+        return dayTours;
     }
 }

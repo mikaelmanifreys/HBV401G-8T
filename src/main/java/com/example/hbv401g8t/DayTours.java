@@ -1,17 +1,20 @@
 package com.example.hbv401g8t;
 
 
+import java.time.LocalDate;
+
 // mock class
 public class DayTours {
     private int tourId;
     private String name;
     private String location;
-    //private List<TimeSlot>;
+    private LocalDate date;
 
-    public DayTours(String name, String location, int tourId) {
+    public DayTours(String name, String location, int tourId, LocalDate date) {
         this.tourId = tourId;
         this.name = name;
         this.location = location;
+        this.date = date;
     }
 
     public int getTourId() {
@@ -24,6 +27,10 @@ public class DayTours {
 
     public String getTourLocation() {
         return location;
+    }
+
+    public LocalDate getTourDate() {
+        return date;
     }
 
 

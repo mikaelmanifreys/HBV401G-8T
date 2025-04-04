@@ -39,9 +39,7 @@ public class BookingController {
 
     @FXML
     public void initialize() {
-        fxFlights.getItems().addAll("Reykjavík → Akureyri", "Reykjavík → Egilsstaðir");
-        fxHotels.getItems().addAll("Hótel Akureyri", "Hótel Austurland");
-        fxDayTours.getItems().addAll("Hvalaskoðun", "Gönguferð í fjöllum");
+
     }
 
 
@@ -62,8 +60,6 @@ public class BookingController {
     public BookingController(TripPlanner tripPlanner) {
         this.tripPlanner = tripPlanner;
     }
-
-    //public boolean cancelBooking(int bookingId) {}
 
 
     public void bookTrip(Customer customer, int packageId) {
@@ -120,6 +116,27 @@ public class BookingController {
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    public void loadTripPackages() {
+        fxFlights.getItems().clear();
+        fxHotels.getItems().clear();
+        fxDayTours.getItems().clear();
+        List<TripPackage> packages = TripPlanner.getInstance().getTripPackages();
+        for (TripPackage pkg : packages) {
+            if (!pkg.getFlights().isEmpty()) {
+                Flights f = pkg.getFlights().get(0);
+                fxFlights.getItems().add(f.getFlightPlaces());
+            }
+            if (!pkg.getHotel().isEmpty()) {
+                Hotels h = pkg.getHotel().get(0);
+                fxHotels.getItems().add(h.getHotelName());
+            }
+            if (!pkg.getDayTours().isEmpty()) {
+                DayTours d = pkg.getDayTours().get(0);
+                fxDayTours.getItems().add(d.getTourName());
             }
         }
     }

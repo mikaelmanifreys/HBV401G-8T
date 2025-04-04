@@ -1,48 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.hbv401g8t.AdministratorController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hbv401g8t.AdministratorController">
     <children>
         <HBox prefHeight="400.0" prefWidth="600.0">
             <children>
                 <VBox prefHeight="224.0" prefWidth="134.0">
                     <children>
-                        <Label prefHeight="18.0" prefWidth="137.0" text="Brottfararstaður"/>
-                        <TextField fx:id="fxFlugBrottfararstadur"/>
-                        <Label prefHeight="18.0" prefWidth="135.0" text="Komustaður"/>
-                        <TextField fx:id="fxFlugKomustaður"/>
-                        <Label prefHeight="18.0" prefWidth="133.0" text="Brottfarardagsetning"/>
-                        <DatePicker fx:id="fxFlugDagsetning"/>
+                        <Label prefHeight="18.0" prefWidth="137.0" text="Brottfararstaður" />
+                        <TextField fx:id="fxFlugBrottfararstadur" />
+                        <Label prefHeight="18.0" prefWidth="135.0" text="Komustaður" />
+                        <TextField fx:id="fxFlugKomustadur" />
+                        <Label prefHeight="18.0" prefWidth="133.0" text="Brottfarardagsetning" />
+                        <DatePicker fx:id="fxFlugDagsetning" />
+                  <Label text="Flugnúmer" />
+                  <TextField fx:id="fxFlugnumer" />
+                  <Label text="Flugfélag" />
+                  <TextField fx:id="fxFlugfelag" />
+                  <Label text="Brottfarartími" />
+                  <HBox prefHeight="27.0" prefWidth="134.0">
+                     <children>
+                        <ComboBox fx:id="fxFlugBrottfaratimiKlst" prefHeight="26.0" prefWidth="70.0" />
+                        <ComboBox fx:id="fxFlugBrottfaratimiMin" prefHeight="26.0" prefWidth="64.0" />
+                     </children>
+                  </HBox>
+                  <Label text="Komutími" />
+                  <HBox prefHeight="26.0" prefWidth="134.0">
+                     <children>
+                        <ComboBox fx:id="fxFlugKomutimiKlst" prefHeight="26.0" prefWidth="70.0" />
+                        <ComboBox fx:id="fxFlugKomutimiMin" prefHeight="26.0" prefWidth="68.0" />
+                     </children>
+                  </HBox>
                     </children>
                 </VBox>
                 <VBox prefHeight="400.0" prefWidth="133.0">
                     <children>
-                        <Label prefHeight="18.0" prefWidth="150.0" text="Nafn"/>
-                        <TextField fx:id="fxHotelNafn"/>
-                        <Label prefHeight="18.0" prefWidth="136.0" text="Staðsetning"/>
-                        <TextField fx:id="fxHotelStadsetning"/>
-                        <Label prefHeight="18.0" prefWidth="147.0" text="Dagsetning frá"/>
-                        <DatePicker fx:id="fxHotelDagsetningFra"/>
-                        <Label text="Dagsetning til"/>
-                        <DatePicker fx:id="fxHotelDagsetningTil"/>
+                        <Label prefHeight="18.0" prefWidth="150.0" text="Nafn" />
+                        <TextField fx:id="fxHotelNafn" />
+                        <Label prefHeight="18.0" prefWidth="136.0" text="Staðsetning" />
+                        <TextField fx:id="fxHotelStadsetning" />
+                        <Label prefHeight="18.0" prefWidth="147.0" text="Dagsetning frá" />
+                        <DatePicker fx:id="fxHotelDagsetningFra" />
+                        <Label text="Dagsetning til" />
+                        <DatePicker fx:id="fxHotelDagsetningTil" />
+                  <Label text="Hótel ID" />
+                  <TextField fx:id="fxHotelId" />
+                  <Label text="Fjöldi lausra herbergja" />
+                  <TextField fx:id="fxFjoldiLausraHerbergja" />
                     </children>
                 </VBox>
                 <VBox prefHeight="400.0" prefWidth="117.0">
                     <children>
-                        <Label prefHeight="18.0" prefWidth="120.0" text="Nafn"/>
-                        <TextField fx:id="fxDayTourNafn"/>
-                        <Label text="Dagsetning"/>
-                        <DatePicker fx:id="fxDayTourDagsetning"/>
+                        <Label prefHeight="18.0" prefWidth="120.0" text="Nafn" />
+                        <TextField fx:id="fxDayTourNafn" />
+                        <Label text="Dagsetning" />
+                        <DatePicker fx:id="fxDayTourDagsetning" />
+                  <Label text="Day Tour ID" />
+                  <TextField fx:id="fxDayTourId" />
+                  <Label text="Staðsetning" />
+                  <TextField fx:id="fxDayTourStadsetning" />
                     </children>
                 </VBox>
                 <VBox prefHeight="400.0" prefWidth="214.0">
                     <children>
-                        <Button fx:id="fxBaetaVidTakki" mnemonicParsing="false" onAction="#baetaVid" prefHeight="76.0"
-                                prefWidth="219.0" text="Bæta við"/>
-                        <Button fx:id="fxTilBakaTakki" mnemonicParsing="false" onAction="#tilBaka" prefHeight="84.0"
-                                prefWidth="216.0" text="Til baka"/>
+                        <Button fx:id="fxBaetaVidTakki" mnemonicParsing="false" onAction="#baetaVid" prefHeight="76.0" prefWidth="219.0" text="Bæta við" />
+                        <Button fx:id="fxTilBakaTakki" mnemonicParsing="false" onAction="#tilBaka" prefHeight="84.0" prefWidth="216.0" text="Til baka" />
                     </children>
                 </VBox>
             </children>
