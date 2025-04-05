@@ -13,7 +13,7 @@ public class TripPackage {
 
     public ArrayList<Package> packages = new ArrayList<>();
 
-    public TripPackage(String destination, double price, List<Flights> flights, List<Hotels> hotels, List<DayTours> dayTours) {
+    public TripPackage(String destination, double price) {
         this.destination = destination;
         this.price = price;
         this.flights = flights;
