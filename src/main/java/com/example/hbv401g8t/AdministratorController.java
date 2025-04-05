@@ -29,7 +29,7 @@ public class AdministratorController {
     public DatePicker fxDayTourDagsetning;
     public TextField fxDayTourNafn;
     public TextField fxFlugnumer;
-    public TextField fxFlugfelag;
+    public TextField fxFjoldiFarthega;
     public ComboBox fxFlugBrottfaratimiKlst;
     public ComboBox fxFlugBrottfaratimiMin;
     public ComboBox fxFlugKomutimiKlst;
@@ -38,6 +38,7 @@ public class AdministratorController {
     public TextField fxFjoldiLausraHerbergja;
     public TextField fxDayTourId;
     public TextField fxDayTourStadsetning;
+    public TextField fxHamarksverd;
 
     @FXML
     public void initialize() {
@@ -60,7 +61,7 @@ public class AdministratorController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Trip-Planner.fxml"));
             Parent root = loader.load();
-            BookingController controller = loader.getController();
+            TripPlannerController controller = loader.getController();
             controller.loadTripPackages();
             Stage stage = (Stage) fxTilBakaTakki.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -79,8 +80,8 @@ public class AdministratorController {
         int flugKomutimiKlst = (int) fxFlugKomutimiKlst.getValue();
         int flugKomutimiMin = (int) fxFlugKomutimiMin.getValue();
         String flugnumer = fxFlugnumer.getText();
-        String flugfelag = fxFlugfelag.getText();
-        Flights flug = new Flights(flugnumer, flugfelag, flugTil, flugFra, flugDagsetning, flugBrottfararTimiKlst, flugBrottfararTimiMin, flugKomutimiKlst, flugKomutimiMin);
+        int fjoldiFarthega = Integer.parseInt(fxFjoldiFarthega.getText());
+        Flights flug = new Flights(flugnumer, fjoldiFarthega, flugTil, flugFra, flugDagsetning, flugBrottfararTimiKlst, flugBrottfararTimiMin, flugKomutimiKlst, flugKomutimiMin);
         String hotelNafn = fxHotelNafn.getText();
         String hotelStadsetning = fxHotelStadsetning.getText();
         LocalDate hotelDagsetningFra = fxHotelDagsetningFra.getValue();

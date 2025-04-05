@@ -3,6 +3,7 @@ package com.example.hbv401g8t;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -11,13 +12,15 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class BookingController {
+public class TripPlannerController {
     public Button fxStadfestingartakki;
     public Label fxStadfestingartexti;
     public Button fxSkraInn;
-    public TextField fxNotandanafn;
-    public TextField fxLykilord;
     public Button fxDateSubmit;
+    public Button fxTilBakaButton;
+    public TextField fxNotandanafn;
+    public Button fxSkraInnButton;
+    public PasswordField fxLykilord;
     private List<TripPackage> tripPackages;
     private List<Booking> bookings;
     private TripPlanner tripPlanner;
@@ -39,11 +42,11 @@ public class BookingController {
 
     @FXML
     public void initialize() {
-
+        
     }
 
 
-    public BookingController() {
+    public TripPlannerController() {
 
     }
 
@@ -57,7 +60,7 @@ public class BookingController {
         System.out.println("Confirmed: " + flight + ", " + hotel + ", " + tour);
     }
 
-    public BookingController(TripPlanner tripPlanner) {
+    public TripPlannerController(TripPlanner tripPlanner) {
         this.tripPlanner = tripPlanner;
     }
 
@@ -110,7 +113,17 @@ public class BookingController {
         if (fxNotandanafn.getText().equals("admin") && fxLykilord.getText().equals("admin")) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Administrator.fxml"));
-                Stage stage = (Stage) fxSkraInn.getScene().getWindow();
+                Stage stage = (Stage) fxSkraInnButton.getScene().getWindow();
+                Scene scene = new Scene(loader.load());
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Bookings.fxml"));
+                Stage stage = (Stage) fxSkraInnButton.getScene().getWindow();
                 Scene scene = new Scene(loader.load());
                 stage.setScene(scene);
                 stage.show();
@@ -138,6 +151,18 @@ public class BookingController {
                 DayTours d = pkg.getDayTours().get(0);
                 fxDayTours.getItems().add(d.getTourName());
             }
+        }
+    }
+
+    public void tilBaka(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Bookings.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) fxTilBakaButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
