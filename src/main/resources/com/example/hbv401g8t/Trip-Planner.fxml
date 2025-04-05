@@ -32,9 +32,30 @@
         </HBox>
         <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
-                <VBox prefHeight="100.0" prefWidth="226.0"/>
-                <VBox prefHeight="100.0" prefWidth="214.0"/>
-                <VBox prefHeight="100.0" prefWidth="217.0"/>
+                <VBox prefHeight="100.0" prefWidth="226.0">
+                    <children>
+                        <Label text="Leita í flugum"/>
+                        <TextField fx:id="fxLeitaBrottfarastadur" promptText="Brottfararstaður"/>
+                        <TextField fx:id="fxLeitaKomustadur" promptText="Komustaður"/>
+                        <TextField fx:id="fxLeitaFlugnumer" promptText="Flugnúmer"/>
+                    </children>
+                </VBox>
+                <VBox prefHeight="100.0" prefWidth="214.0">
+                    <children>
+                        <Label text="Leita í hótelum"/>
+                        <TextField fx:id="fxLeitaHotelNafn" promptText="Nafn hótels"/>
+                        <TextField fx:id="fxLeitaHotelStadsetning" promptText="Staðsetning"/>
+                        <TextField fx:id="fxLeitaHotelID" promptText="Hótel ID"/>
+                    </children>
+                </VBox>
+                <VBox prefHeight="100.0" prefWidth="217.0">
+                    <children>
+                        <Label text="Leita í dagsferðum"/>
+                        <TextField fx:id="fxLeitaHeitiFerdar" promptText="Heiti ferðar"/>
+                        <TextField fx:id="fxleitaStadsetningFerdar" promptText="Staðsetning"/>
+                        <TextField fx:id="fxLeitaIdFerdar" promptText="ID ferðar"/>
+                    </children>
+                </VBox>
             </children>
         </HBox>
         <HBox prefHeight="289.0" prefWidth="600.0">

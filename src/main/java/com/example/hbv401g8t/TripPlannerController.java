@@ -21,6 +21,15 @@ public class TripPlannerController {
     public TextField fxNotandanafn;
     public Button fxSkraInnButton;
     public PasswordField fxLykilord;
+    public TextField fxLeitaBrottfarastadur;
+    public TextField fxLeitaKomustadur;
+    public TextField fxLeitaFlugnumer;
+    public TextField fxLeitaHotelNafn;
+    public TextField fxLeitaHotelStadsetning;
+    public TextField fxLeitaHotelID;
+    public TextField fxLeitaHeitiFerdar;
+    public TextField fxleitaStadsetningFerdar;
+    public TextField fxLeitaIdFerdar;
     private List<TripPackage> tripPackages;
     private List<Booking> bookings;
     private TripPlanner tripPlanner;
@@ -42,7 +51,7 @@ public class TripPlannerController {
 
     @FXML
     public void initialize() {
-        
+
     }
 
 

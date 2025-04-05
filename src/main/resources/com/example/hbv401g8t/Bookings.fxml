@@ -19,6 +19,8 @@
                         <VBox prefHeight="100.0" prefWidth="159.0">
                             <children>
                                 <Button fx:id="fxAfboka" mnemonicParsing="false" onAction="#afboka" text="Afbóka"/>
+                                <Button fx:id="fxTilBakaButton" mnemonicParsing="false" onAction="#tilBaka"
+                                        text="Til Baka"/>
                             </children>
                         </VBox>
                     </children>
