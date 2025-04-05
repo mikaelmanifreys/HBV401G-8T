@@ -11,13 +11,14 @@ public class TripPackage {
     private String destination;
     private double price;
 
+    public ArrayList<Package> packages = new ArrayList<>();
 
-    public TripPackage(String destination, double price) {
+    public TripPackage(String destination, double price, List<Flights> flights, List<Hotels> hotels, List<DayTours> dayTours) {
         this.destination = destination;
         this.price = price;
-        this.flights = new ArrayList<>();
-        this.hotels = new ArrayList<>();
-        this.dayTours = new ArrayList<>();
+        this.flights = flights;
+        this.hotels = hotels;
+        this.dayTours = dayTours;
     }
 
     public void addFlight(Flights flight) {

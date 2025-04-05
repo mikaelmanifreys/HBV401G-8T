@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class TripPlannerController {
+    public Button fxOnBookings;
     public Button fxStadfestingartakki;
     public Label fxStadfestingartexti;
     public Button fxSkraInn;
@@ -174,4 +175,5 @@ public class TripPlannerController {
             e.printStackTrace();
         }
     }
+
 }

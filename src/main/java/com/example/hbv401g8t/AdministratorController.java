@@ -53,10 +53,6 @@ public class AdministratorController {
         fxFlugKomutimiMin.setItems(minutes);
     }
 
-    public static void main(String[] args) {
-
-    }
-
     public void tilBaka(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Trip-Planner.fxml"));
