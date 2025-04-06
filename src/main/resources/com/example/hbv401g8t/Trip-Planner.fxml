@@ -2,30 +2,27 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0"
-      prefWidth="706.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.hbv401g8t.TripPlannerController">
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hbv401g8t.TripPlannerController">
     <children>
         <HBox prefHeight="136.0" prefWidth="660.0">
             <children>
-                <Label prefHeight="98.0" prefWidth="344.0"
-                       text="                                               Trip Planner"/>
+                <Label prefHeight="98.0" prefWidth="344.0" text="                                               Trip Planner" />
                 <VBox prefHeight="112.0" prefWidth="192.0">
                     <children>
-                        <Label text="Notandanafn"/>
-                        <TextField fx:id="fxNotandanafn"/>
-                        <Label prefHeight="18.0" prefWidth="116.0" text="Lykilorð"/>
-                        <PasswordField fx:id="fxLykilord"/>
-                        <Button fx:id="fxSkraInnButton" mnemonicParsing="false" onAction="#SkraInn" text="Skrá inn"/>
+                        <Label text="Notandanafn" />
+                        <TextField fx:id="fxNotandanafn" />
+                        <Label prefHeight="18.0" prefWidth="116.0" text="Lykilorð" />
+                        <PasswordField fx:id="fxLykilord" />
+                        <Button fx:id="fxSkraInnButton" mnemonicParsing="false" onAction="#SkraInn" text="Skrá inn" />
                     </children>
                 </VBox>
                 <VBox prefHeight="112.0" prefWidth="178.0">
                     <children>
-                        <DatePicker fx:id="fxFraDate" prefHeight="34.0" prefWidth="141.0" promptText="Frá"/>
-                        <DatePicker fx:id="fxTilDate" prefHeight="30.0" prefWidth="141.0" promptText="Til"/>
-                        <Button fx:id="fxDateSubmit" mnemonicParsing="false" onAction="#onDateSubmit" prefHeight="36.0"
-                                prefWidth="142.0" text="Staðfesta"/>
-                        <Label fx:id="fxDateLabel" prefHeight="35.0" prefWidth="200.0"/>
+                        <DatePicker fx:id="fxFraDate" prefHeight="34.0" prefWidth="141.0" promptText="Frá" />
+                        <DatePicker fx:id="fxTilDate" prefHeight="30.0" prefWidth="141.0" promptText="Til" />
+                        <Button fx:id="fxDateSubmit" mnemonicParsing="false" onAction="#onDateSubmit" prefHeight="36.0" prefWidth="142.0" text="Staðfesta" />
+                        <Label fx:id="fxDateLabel" prefHeight="35.0" prefWidth="200.0" />
                     </children>
                 </VBox>
             </children>
@@ -34,42 +31,41 @@
             <children>
                 <VBox prefHeight="100.0" prefWidth="226.0">
                     <children>
-                        <Label text="Leita í flugum"/>
-                        <TextField fx:id="fxLeitaBrottfarastadur" promptText="Brottfararstaður"/>
-                        <TextField fx:id="fxLeitaKomustadur" promptText="Komustaður"/>
-                        <TextField fx:id="fxLeitaFlugnumer" promptText="Flugnúmer"/>
+                        <Label text="Leita í flugum" />
+                        <TextField fx:id="fxLeitaBrottfarastadur" promptText="Brottfararstaður" />
+                        <TextField fx:id="fxLeitaKomustadur" promptText="Komustaður" />
+                        <TextField fx:id="fxLeitaFlugnumer" promptText="Flugnúmer" />
                     </children>
                 </VBox>
                 <VBox prefHeight="100.0" prefWidth="214.0">
                     <children>
-                        <Label text="Leita í hótelum"/>
-                        <TextField fx:id="fxLeitaHotelNafn" promptText="Nafn hótels"/>
-                        <TextField fx:id="fxLeitaHotelStadsetning" promptText="Staðsetning"/>
-                        <TextField fx:id="fxLeitaHotelID" promptText="Hótel ID"/>
+                        <Label text="Leita í hótelum" />
+                        <TextField fx:id="fxLeitaHotelNafn" promptText="Nafn hótels" />
+                        <TextField fx:id="fxLeitaHotelStadsetning" promptText="Staðsetning" />
+                        <TextField fx:id="fxLeitaHotelID" promptText="Hótel ID" />
                     </children>
                 </VBox>
                 <VBox prefHeight="100.0" prefWidth="217.0">
                     <children>
-                        <Label text="Leita í dagsferðum"/>
-                        <TextField fx:id="fxLeitaHeitiFerdar" promptText="Heiti ferðar"/>
-                        <TextField fx:id="fxleitaStadsetningFerdar" promptText="Staðsetning"/>
-                        <TextField fx:id="fxLeitaIdFerdar" promptText="ID ferðar"/>
+                        <Label text="Leita í dagsferðum" />
+                        <TextField fx:id="fxLeitaHeitiFerdar" promptText="Heiti ferðar" />
+                        <TextField fx:id="fxleitaStadsetningFerdar" promptText="Staðsetning" />
+                        <TextField fx:id="fxLeitaIdFerdar" promptText="ID ferðar" />
                     </children>
                 </VBox>
             </children>
         </HBox>
         <HBox prefHeight="289.0" prefWidth="600.0">
             <children>
-                <ListView fx:id="fxFlights" prefHeight="289.0" prefWidth="224.0"/>
-                <ListView fx:id="fxHotels" prefHeight="289.0" prefWidth="216.0"/>
-                <ListView fx:id="fxDayTours" prefHeight="289.0" prefWidth="218.0"/>
+                <ListView fx:id="fxFlights" prefHeight="289.0" prefWidth="224.0" />
+                <ListView fx:id="fxHotels" prefHeight="289.0" prefWidth="216.0" />
+                <ListView fx:id="fxDayTours" prefHeight="289.0" prefWidth="218.0" />
             </children>
         </HBox>
         <HBox prefHeight="103.0" prefWidth="660.0">
             <children>
-                <Button fx:id="fxStadfestingartakki" mnemonicParsing="false" onAction="#StadfestaVal" prefHeight="96.0"
-                        prefWidth="126.0" text="Staðfesta val"/>
-                <Label fx:id="fxStadfestingartexti" prefHeight="94.0" prefWidth="452.0"/>
+                <Button fx:id="fxStadfestingartakki" mnemonicParsing="false" onAction="#StadfestaVal" prefHeight="96.0" prefWidth="126.0" text="Staðfesta val" />
+                <Label fx:id="fxStadfestingartexti" prefHeight="94.0" prefWidth="452.0" />
             </children>
         </HBox>
     </children>
