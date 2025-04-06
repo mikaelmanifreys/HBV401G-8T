@@ -201,37 +201,67 @@ public class TripPlannerController {
     public void leitaIHotelum(ActionEvent actionEvent) {
         String leitHotelNafn = fxLeitaHotelNafn.getText().toLowerCase();
         String leitHotelStadsetning = fxLeitaHotelStadsetning.getText().toLowerCase();
-        int leitHotelID = Integer.parseInt(fxLeitaHotelID.getText());
+        Integer leitHotelID = null;
+        String idText = fxLeitaHotelID.getText();
+        if (!idText.isBlank()) {
+            leitHotelID = Integer.parseInt(idText);
+        }
 
-        fxFlights.getItems().clear();
+        fxHotels.getItems().clear();
 
         List<TripPackage> packages = TripPlanner.getInstance().getTripPackages();
         for (TripPackage pkg : packages) {
             for (Hotels h : pkg.getHotel()) {
-                boolean passar = true;
-
-                if (!leitHotelNafn.isBlank() &&
-                        (h.getHotelName() == null || !h.getHotelName().toLowerCase().contains(leitHotelNafn))) {
-                    passar = false;
-                }
+                boolean passar = leitHotelNafn.isBlank() ||
+                        (h.getHotelName() != null && h.getHotelName().toLowerCase().contains(leitHotelNafn));
 
                 if (!leitHotelStadsetning.isBlank() &&
                         (h.getHotelLocation() == null || !h.getHotelLocation().toLowerCase().contains(leitHotelStadsetning))) {
                     passar = false;
                 }
 
-                if (leitHotelID != 0 && h.getHotelId() != leitHotelID) {
+                if (leitHotelID != null && h.getHotelId() != leitHotelID) {
                     passar = false;
                 }
 
                 if (passar) {
-                    fxFlights.getItems().add(h.getHotelName());
+                    fxHotels.getItems().add(h.getHotelName());
                 }
             }
         }
     }
 
     public void leitaIDagsferdum(ActionEvent actionEvent) {
+        String leitDagsferdNafn = fxLeitaHeitiFerdar.getText().toLowerCase();
+        String leitDagsferdStadsetning = fxleitaStadsetningFerdar.getText().toLowerCase();
+        Integer leitDagsferdID = null;
+        String idText = fxLeitaIdFerdar.getText();
+        if (!idText.isBlank()) {
+            leitDagsferdID = Integer.parseInt(idText);
+        }
+
+        fxDayTours.getItems().clear();
+
+        List<TripPackage> packages = TripPlanner.getInstance().getTripPackages();
+        for (TripPackage pkg : packages) {
+            for (DayTours d : pkg.getDayTours()) {
+                boolean passar = leitDagsferdNafn.isBlank() ||
+                        (d.getTourName() != null && d.getTourName().toLowerCase().contains(leitDagsferdNafn));
+
+                if (!leitDagsferdStadsetning.isBlank() &&
+                        (d.getTourLocation() == null || !d.getTourLocation().toLowerCase().contains(leitDagsferdStadsetning))) {
+                    passar = false;
+                }
+
+                if (leitDagsferdID != null && d.getTourId() != leitDagsferdID) {
+                    passar = false;
+                }
+
+                if (passar) {
+                    fxDayTours.getItems().add(d.getTourName());
+                }
+            }
+        }
     }
 
 }
