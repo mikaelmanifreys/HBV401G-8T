@@ -1,35 +1,27 @@
 package com.example.hbv401g8t;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
-    private int customerId;
-    private String email;
     private String name;
-    private TripPackage tripPackage;
-
     private List<Booking> bookings;
 
-    public Customer(String name, int customerId, String email) {
+    public Customer(String name) {
         this.name = name;
-        this.customerId = customerId;
-        this.email = email;
         this.bookings = new ArrayList<>();
     }
 
-    public void bookTrip(TripPackage tripPackage) {
-        Booking booking = new Booking(this, tripPackage);
+    public void bookTrip(TripPackage tripPackage, LocalDate dateFrom, LocalDate dateTo) {
+        Booking booking = new Booking(this, tripPackage, dateFrom, dateTo);
         bookings.add(booking);
     }
 
     public void viewBooking() {
 
     }
-
-    public void cancelBooking() {
-        bookings.removeIf(b -> b.getTrip().equals(tripPackage));
-    }
+    
 
     public List<Booking> getBookings() {
         return bookings;
@@ -38,4 +30,9 @@ public class Customer {
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }

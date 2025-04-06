@@ -1,35 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<<<<<<< Updated upstream
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hbv401g8t.TripPlannerController">
-=======
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hbv401g8t.TripPlannerController">
->>>>>>> Stashed changes
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1047.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hbv401g8t.TripPlannerController">
     <children>
         <HBox prefHeight="136.0" prefWidth="660.0">
             <children>
                 <Label prefHeight="98.0" prefWidth="344.0" text="                                               Trip Planner" />
-                <VBox prefHeight="112.0" prefWidth="192.0">
-                    <children>
-                        <Label text="Notandanafn" />
-                        <TextField fx:id="fxNotandanafn" />
-                        <Label prefHeight="18.0" prefWidth="116.0" text="Lykilorð" />
-                        <PasswordField fx:id="fxLykilord" />
-                        <Button fx:id="fxSkraInnButton" mnemonicParsing="false" onAction="#SkraInn" text="Skrá inn" />
-                    </children>
-                </VBox>
+            <Label fx:id="fxInnskradurNotandi" prefHeight="100.0" prefWidth="167.0" />
                 <VBox prefHeight="112.0" prefWidth="178.0">
                     <children>
                         <DatePicker fx:id="fxFraDate" prefHeight="34.0" prefWidth="141.0" promptText="Frá" />
@@ -44,61 +28,72 @@
             <children>
                 <VBox prefHeight="100.0" prefWidth="226.0">
                     <children>
-<<<<<<< Updated upstream
-                        <Label text="Leita í flugum" />
                         <TextField fx:id="fxLeitaBrottfarastadur" promptText="Brottfararstaður" />
                         <TextField fx:id="fxLeitaKomustadur" promptText="Komustaður" />
                         <TextField fx:id="fxLeitaFlugnumer" promptText="Flugnúmer" />
-=======
-                        <TextField fx:id="fxLeitaBrottfarastadur" promptText="Brottfararstaður" />
-                        <TextField fx:id="fxLeitaKomustadur" promptText="Komustaður" />
-                        <TextField fx:id="fxLeitaFlugnumer" promptText="Flugnúmer" />
-                  <Button fx:id="fxLeitaIFlugum" mnemonicParsing="false" onAction="#leitaIFlugum" text="Leita í flugum" />
->>>>>>> Stashed changes
+                        <Button fx:id="fxLeitaIFlugumButton" mnemonicParsing="false" onAction="#leitaIFlugum" text="Leita í flugum" />
                     </children>
                 </VBox>
                 <VBox prefHeight="100.0" prefWidth="214.0">
                     <children>
-<<<<<<< Updated upstream
-                        <Label text="Leita í hótelum" />
                         <TextField fx:id="fxLeitaHotelNafn" promptText="Nafn hótels" />
                         <TextField fx:id="fxLeitaHotelStadsetning" promptText="Staðsetning" />
                         <TextField fx:id="fxLeitaHotelID" promptText="Hótel ID" />
-=======
-                        <TextField fx:id="fxLeitaHotelNafn" promptText="Nafn hótels" />
-                        <TextField fx:id="fxLeitaHotelStadsetning" promptText="Staðsetning" />
-                        <TextField fx:id="fxLeitaHotelID" promptText="Hótel ID" />
-                  <Button fx:id="fxLeitaIHotelumButton" mnemonicParsing="false" onAction="#leitaIHotelum" text="Leita í hótelum" />
->>>>>>> Stashed changes
+                        <Button fx:id="fxLeitaIHotelumButton" mnemonicParsing="false" onAction="#leitaIHotelum" text="Leita í hótelum" />
                     </children>
                 </VBox>
                 <VBox prefHeight="100.0" prefWidth="217.0">
                     <children>
-<<<<<<< Updated upstream
-                        <Label text="Leita í dagsferðum" />
                         <TextField fx:id="fxLeitaHeitiFerdar" promptText="Heiti ferðar" />
                         <TextField fx:id="fxleitaStadsetningFerdar" promptText="Staðsetning" />
                         <TextField fx:id="fxLeitaIdFerdar" promptText="ID ferðar" />
-=======
-                        <TextField fx:id="fxLeitaHeitiFerdar" promptText="Heiti ferðar" />
-                        <TextField fx:id="fxleitaStadsetningFerdar" promptText="Staðsetning" />
-                        <TextField fx:id="fxLeitaIdFerdar" promptText="ID ferðar" />
-                  <Button fx:id="fxLeitaIDagsferdumButton" mnemonicParsing="false" onAction="#leitaIDagsferdum" text="Leita í dagsferðum" />
->>>>>>> Stashed changes
+                        <Button fx:id="fxLeitaIDagsferdumButton" mnemonicParsing="false" onAction="#leitaIDagsferdum" text="Leita í dagsferðum" />
                     </children>
                 </VBox>
             </children>
         </HBox>
         <HBox prefHeight="289.0" prefWidth="600.0">
             <children>
-                <ListView fx:id="fxFlights" prefHeight="289.0" prefWidth="224.0" />
-                <ListView fx:id="fxHotels" prefHeight="289.0" prefWidth="216.0" />
-                <ListView fx:id="fxDayTours" prefHeight="289.0" prefWidth="218.0" />
+                <ListView fx:id="fxFlights" onMouseClicked="#flugValid" prefHeight="289.0" prefWidth="224.0" />
+                <ListView fx:id="fxHotels" onMouseClicked="#hotelValid" prefHeight="289.0" prefWidth="216.0" />
+                <ListView fx:id="fxDayTours" onMouseClicked="#dayTourValid" prefHeight="289.0" prefWidth="218.0" />
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label fx:id="fxBrottfarastadur" />
+                        <Label fx:id="fxAfangastadur" />
+                        <Label fx:id="fxDagsetning" />
+                        <Label fx:id="fxFlugnumer" />
+                        <Label fx:id="fxHamarkFarthega" />
+                        <Label fx:id="fxBrottfarartimi" />
+                        <Label fx:id="fxKomutimi" />
+                        <Label fx:id="fxHamarksverd" />
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label fx:id="fxHotelNafn" />
+                        <Label fx:id="fxHotelStadsetning" />
+                        <Label fx:id="fxHotelKomudagur" />
+                        <Label fx:id="fxHotelBrottfarardagur" />
+                        <Label fx:id="fxHotelLausHerbergi" />
+                        <Label fx:id="fxHotelID" />
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label fx:id="fxHeitiDagsferd" />
+                        <Label fx:id="fxDagsferdID" />
+                        <Label fx:id="fxDagsferdDagsetning" />
+                        <Label fx:id="fxDagsferdStadsetning" />
+                    </children>
+                </VBox>
             </children>
         </HBox>
         <HBox prefHeight="103.0" prefWidth="660.0">
             <children>
                 <Button fx:id="fxStadfestingartakki" mnemonicParsing="false" onAction="#StadfestaVal" prefHeight="96.0" prefWidth="126.0" text="Staðfesta val" />
+            <Button fx:id="fxBokanirButton" mnemonicParsing="false" onAction="#opnaBokanir" prefHeight="96.0" prefWidth="126.0" text="Bókanir" />
+            <Button fx:id="fxTilBakaButton" mnemonicParsing="false" onAction="#tilBaka" prefHeight="96.0" prefWidth="126.0" text="Til baka" />
                 <Label fx:id="fxStadfestingartexti" prefHeight="94.0" prefWidth="452.0" />
             </children>
         </HBox>

@@ -3,8 +3,10 @@ package com.example.hbv401g8t;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,13 +14,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class TripPlannerController {
-    public Button fxOnBookings;
     public Button fxStadfestingartakki;
     public Label fxStadfestingartexti;
     public Button fxDateSubmit;
-    public TextField fxNotandanafn;
-    public Button fxSkraInnButton;
-    public PasswordField fxLykilord;
     public TextField fxLeitaBrottfarastadur;
     public TextField fxLeitaKomustadur;
     public TextField fxLeitaFlugnumer;
@@ -28,21 +26,41 @@ public class TripPlannerController {
     public TextField fxLeitaHeitiFerdar;
     public TextField fxleitaStadsetningFerdar;
     public TextField fxLeitaIdFerdar;
-    public Button fxLeitaIFlugum;
+    public Button fxLeitaIFlugumButton;
     public Button fxLeitaIHotelumButton;
     public Button fxLeitaIDagsferdumButton;
-    private List<TripPackage> tripPackages;
-    private List<Booking> bookings;
+    public Label fxBrottfarastadur;
+    public Label fxAfangastadur;
+    public Label fxDagsetning;
+    public Label fxHamarkFarthega;
+    public Label fxBrottfarartimi;
+    public Label fxKomutimi;
+    public Label fxHamarksverd;
+    public Label fxHotelNafn;
+    public Label fxHotelStadsetning;
+    public Label fxHotelKomudagur;
+    public Label fxHotelBrottfarardagur;
+    public Label fxHotelLausHerbergi;
+    public Label fxHotelID;
+    public Label fxHeitiDagsferd;
+    public Label fxDagsferdID;
+    public Label fxDagsferdDagsetning;
+    public Label fxDagsferdStadsetning;
+    public Label fxFlugnumer;
+    public Label fxInnskradurNotandi;
+    public Button fxTilBakaButton;
+    public Button fxBokanirButton;
     private TripPlanner tripPlanner;
     private LocalDate fraDate;
     private LocalDate tilDate;
+    private Customer loggedInCustomer;
 
     @FXML
-    private ListView<String> fxFlights;
+    private ListView<Flights> fxFlights;
     @FXML
-    private ListView<String> fxHotels;
+    private ListView<Hotels> fxHotels;
     @FXML
-    private ListView<String> fxDayTours;
+    private ListView<DayTours> fxDayTours;
     @FXML
     private DatePicker fxFraDate;
     @FXML
@@ -61,37 +79,6 @@ public class TripPlannerController {
     }
 
 
-    @FXML
-    private void stadfestaValHandler() {
-        String flight = fxFlights.getSelectionModel().getSelectedItem();
-        String hotel = fxHotels.getSelectionModel().getSelectedItem();
-        String tour = fxDayTours.getSelectionModel().getSelectedItem();
-
-        System.out.println("Confirmed: " + flight + ", " + hotel + ", " + tour);
-    }
-
-    public TripPlannerController(TripPlanner tripPlanner) {
-        this.tripPlanner = tripPlanner;
-    }
-
-
-    public void bookTrip(Customer customer, int packageId) {
-        TripPackage tripPackage = tripPlanner.getTripPackages().get(packageId);
-        customer.bookTrip(tripPackage);
-    }
-
-    public void addFlightToPackage(int packageId, Flights flight) {
-        tripPlanner.addFlightToPackage(packageId, flight);
-    }
-
-    public void addHotelToPackage(int packageId, Hotels hotel) {
-        tripPlanner.addHotelToPackage(packageId, hotel);
-    }
-
-    public void addDayTourToPackage(int packageId, DayTours dayTour) {
-        tripPlanner.addDayTourToPackage(packageId, dayTour);
-    }
-
     public void onDateSubmit() {
         this.tilDate = fxTilDate.getValue();
         this.fraDate = fxFraDate.getValue();
@@ -103,39 +90,29 @@ public class TripPlannerController {
         }
     }
 
-    public List<TripPackage> getAvailableTripPackages() {
-        return tripPlanner.getTripPackages();
-    }
-
     public void StadfestaVal(ActionEvent actionEvent) {
-        String flight = fxFlights.getSelectionModel().getSelectedItem();
-        String hotel = fxHotels.getSelectionModel().getSelectedItem();
-        String tour = fxDayTours.getSelectionModel().getSelectedItem();
+        Flights flight = fxFlights.getSelectionModel().getSelectedItem();
+        Hotels hotel = fxHotels.getSelectionModel().getSelectedItem();
+        DayTours tour = fxDayTours.getSelectionModel().getSelectedItem();
 
         if (flight == null || hotel == null || tour == null || fraDate == null || tilDate == null) {
             fxStadfestingartexti.setText("Vinsamlegast veldu úr öllum flokkum.");
         } else {
-            fxStadfestingartexti.setText("Valið: " + flight + ", " + hotel + ", " + tour + " frá: " + fraDate + " til: " + tilDate);
-        }
-    }
-
-    public void SkraInn(ActionEvent actionEvent) {
-        if (fxNotandanafn.getText().equals("admin") && fxLykilord.getText().equals("admin")) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Administrator.fxml"));
-                Stage stage = (Stage) fxSkraInnButton.getScene().getWindow();
-                Scene scene = new Scene(loader.load());
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
+            TripPackage newPackage = new TripPackage(flight.getDestination(), 0);
+            newPackage.addFlight(fxFlights.getSelectionModel().getSelectedItem());
+            newPackage.addHotel(fxHotels.getSelectionModel().getSelectedItem());
+            newPackage.addDayTour(fxDayTours.getSelectionModel().getSelectedItem());
+            Booking newBooking = new Booking(loggedInCustomer, newPackage, fraDate, tilDate);
+            TripPlanner.getInstance().addBooking(newBooking);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Bookings.fxml"));
-                Stage stage = (Stage) fxSkraInnButton.getScene().getWindow();
-                Scene scene = new Scene(loader.load());
-                stage.setScene(scene);
+                Parent root = loader.load();
+                BookingsController controller = loader.getController();
+                controller.setLoggedInCustomer(loggedInCustomer);
+                controller.updateBookingList();
+                Stage stage = (Stage) fxStadfestingartakki.getScene().getWindow();
+                stage.setTitle("Bookings");
+                stage.setScene(new Scene(root));
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -147,22 +124,15 @@ public class TripPlannerController {
         fxFlights.getItems().clear();
         fxHotels.getItems().clear();
         fxDayTours.getItems().clear();
+
         List<TripPackage> packages = TripPlanner.getInstance().getTripPackages();
         for (TripPackage pkg : packages) {
-            if (!pkg.getFlights().isEmpty()) {
-                Flights f = pkg.getFlights().get(0);
-                fxFlights.getItems().add(f.getFlightPlaces());
-            }
-            if (!pkg.getHotel().isEmpty()) {
-                Hotels h = pkg.getHotel().get(0);
-                fxHotels.getItems().add(h.getHotelName());
-            }
-            if (!pkg.getDayTours().isEmpty()) {
-                DayTours d = pkg.getDayTours().get(0);
-                fxDayTours.getItems().add(d.getTourName());
-            }
+            fxFlights.getItems().addAll(pkg.getFlights());
+            fxHotels.getItems().addAll(pkg.getHotel());
+            fxDayTours.getItems().addAll(pkg.getDayTours());
         }
     }
+
 
     public void leitaIFlugum(ActionEvent actionEvent) {
         String leitBrottfararstadur = fxLeitaBrottfarastadur.getText().toLowerCase();
@@ -192,7 +162,7 @@ public class TripPlannerController {
                 }
 
                 if (passar) {
-                    fxFlights.getItems().add(f.getDeparturePlace() + " - " + f.getDestination());
+                    fxFlights.getItems().add(f);
                 }
             }
         }
@@ -225,7 +195,7 @@ public class TripPlannerController {
                 }
 
                 if (passar) {
-                    fxHotels.getItems().add(h.getHotelName());
+                    fxHotels.getItems().add(h);
                 }
             }
         }
@@ -258,10 +228,79 @@ public class TripPlannerController {
                 }
 
                 if (passar) {
-                    fxDayTours.getItems().add(d.getTourName());
+                    fxDayTours.getItems().add(d);
                 }
             }
         }
     }
 
+    public void flugValid(MouseEvent mouseEvent) {
+        Flights f = fxFlights.getSelectionModel().getSelectedItem();
+        if (f != null) {
+            fxBrottfarastadur.setText("Brottfararstaður:\n" + f.getDeparturePlace());
+            fxAfangastadur.setText("Áfangastaður:\n" + f.getDestination());
+            fxFlugnumer.setText("Flugnúmer:\n" + f.getFlightId());
+            fxDagsetning.setText("Dagsetning:\n" + f.getDate().toString());
+            fxBrottfarartimi.setText("Brottfarartími:\n" + f.getDepartureTime());
+            fxKomutimi.setText("Komutími:\n" + f.getArrivalTime());
+            fxHamarkFarthega.setText("Farþegafjöldi:\n" + f.getFjoldiFarthega());
+            fxHamarksverd.setText("Hámarksverð:\n" + f.getPrice());
+        }
+    }
+
+    public void hotelValid(MouseEvent mouseEvent) {
+        Hotels h = fxHotels.getSelectionModel().getSelectedItem();
+        if (h != null) {
+            fxHotelNafn.setText("Nafn hótels:\n" + h.getHotelName());
+            fxHotelStadsetning.setText("Staðsetning hótels:\n" + h.getHotelLocation());
+            fxHotelKomudagur.setText("Komudagur:\n" + h.getDateFrom());
+            fxHotelBrottfarardagur.setText("Brottfarardagur:\n" + h.getDateTo());
+            fxHotelID.setText("Hótel ID:\n" + h.getHotelId());
+            fxHotelLausHerbergi.setText("Fjöldi lausra herbergja:\n" + h.getAvailableRooms());
+        }
+    }
+
+    public void dayTourValid(MouseEvent mouseEvent) {
+        DayTours d = fxDayTours.getSelectionModel().getSelectedItem();
+        if (d != null) {
+            fxHeitiDagsferd.setText("Heiti dagsferðar:\n" + d.getTourName());
+            fxDagsferdStadsetning.setText("Staðsetning dagsferðar:\n" + d.getTourLocation());
+            fxDagsferdDagsetning.setText("Dagsetning dagsferðar:\n" + d.getTourDate());
+            fxDagsferdID.setText("ID dagsferðar:\n" + d.getTourId());
+        }
+    }
+
+    public void setLoggedInCustomer(Customer customer) {
+        this.loggedInCustomer = customer;
+        fxInnskradurNotandi.setText("Innskráður Notandi: " + customer.getName());
+    }
+
+    public void tilBaka(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/LogIn.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) fxTilBakaButton.getScene().getWindow();
+            stage.setTitle("Log In");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void opnaBokanir(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Bookings.fxml"));
+            Parent root = loader.load();
+            BookingsController controller = loader.getController();
+            controller.setLoggedInCustomer(loggedInCustomer);
+            controller.updateBookingList();
+            Stage stage = (Stage) fxBokanirButton.getScene().getWindow();
+            stage.setTitle("Bookings");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -9,9 +9,18 @@ public class TripPlanner {
     private int numberOfPassengers;
     private int tripLength;
     private List<TripPackage> tripPackages;
+    private List<Booking> bookings = new ArrayList<>();
 
     public TripPlanner() {
         tripPackages = new ArrayList<>();
+    }
+
+    public void addBooking(Booking booking) {
+        bookings.add(booking);
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
     public static TripPlanner getInstance() {

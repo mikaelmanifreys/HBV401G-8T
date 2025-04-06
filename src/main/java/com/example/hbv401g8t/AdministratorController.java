@@ -55,11 +55,10 @@ public class AdministratorController {
 
     public void tilBaka(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Trip-Planner.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/LogIn.fxml"));
             Parent root = loader.load();
-            TripPlannerController controller = loader.getController();
-            controller.loadTripPackages();
             Stage stage = (Stage) fxTilBakaTakki.getScene().getWindow();
+            stage.setTitle("Log In");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -77,7 +76,8 @@ public class AdministratorController {
         int flugKomutimiMin = (int) fxFlugKomutimiMin.getValue();
         String flugnumer = fxFlugnumer.getText();
         int fjoldiFarthega = Integer.parseInt(fxFjoldiFarthega.getText());
-        Flights flug = new Flights(flugnumer, fjoldiFarthega, flugFra, flugTil, flugDagsetning, flugBrottfararTimiKlst, flugBrottfararTimiMin, flugKomutimiKlst, flugKomutimiMin);
+        int hamarksverd = Integer.parseInt(fxHamarksverd.getText());
+        Flights flug = new Flights(flugnumer, fjoldiFarthega, flugFra, flugTil, flugDagsetning, flugBrottfararTimiKlst, flugBrottfararTimiMin, flugKomutimiKlst, flugKomutimiMin, hamarksverd);
         String hotelNafn = fxHotelNafn.getText();
         String hotelStadsetning = fxHotelStadsetning.getText();
         LocalDate hotelDagsetningFra = fxHotelDagsetningFra.getValue();

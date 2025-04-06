@@ -9,16 +9,14 @@ public class TripPackage {
     private List<DayTours> dayTours;
 
     private String destination;
-    private double price;
-
-    public ArrayList<Package> packages = new ArrayList<>();
+    private int price;
 
     public TripPackage(String destination, double price) {
         this.destination = destination;
-        this.price = price;
-        this.flights = flights;
-        this.hotels = hotels;
-        this.dayTours = dayTours;
+        this.price = (int) price;
+        this.flights = new ArrayList<>();
+        this.hotels = new ArrayList<>();
+        this.dayTours = new ArrayList<>();
     }
 
     public void addFlight(Flights flight) {

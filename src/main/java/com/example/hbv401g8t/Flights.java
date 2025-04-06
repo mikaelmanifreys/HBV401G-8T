@@ -12,8 +12,9 @@ public class Flights {
     private String departurePlace;
     private String destination;
     private LocalDate date;
+    private int highestPrice;
 
-    public Flights(String flightId, int fjoldiFarthega, String departurePlace, String destination, LocalDate date, int departureTimeHour, int departureTimeMin, int arrivalTimeHour, int arrivalTimeMin) {
+    public Flights(String flightId, int fjoldiFarthega, String departurePlace, String destination, LocalDate date, int departureTimeHour, int departureTimeMin, int arrivalTimeHour, int arrivalTimeMin, int highestPrice) {
         this.flightId = flightId;
         this.fjoldiFarthega = fjoldiFarthega;
         this.departureTimeHour = departureTimeHour;
@@ -23,6 +24,12 @@ public class Flights {
         this.date = date;
         this.departurePlace = departurePlace;
         this.destination = destination;
+        this.highestPrice = highestPrice;
+    }
+
+    @Override
+    public String toString() {
+        return departurePlace + "-" + destination;
     }
 
     public String getFlightDetails() {
@@ -43,5 +50,25 @@ public class Flights {
 
     public String getFlightId() {
         return flightId;
+    }
+
+    public int getFjoldiFarthega() {
+        return fjoldiFarthega;
+    }
+
+    public String getArrivalTime() {
+        return arrivalTimeHour + ":" + arrivalTimeMin;
+    }
+
+    public String getDepartureTime() {
+        return departureTimeHour + ":" + departureTimeMin;
+    }
+
+    public Object getDate() {
+        return date;
+    }
+
+    public int getPrice() {
+        return highestPrice;
     }
 }

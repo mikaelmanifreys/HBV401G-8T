@@ -20,6 +20,11 @@ public class Hotels {
         this.dateTo = dateTo;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     public boolean checkAvailability() {
         return availableRooms > 0;
     }
@@ -38,6 +43,18 @@ public class Hotels {
 
     public int getHotelId() {
         return hotelId;
+    }
+
+    public Object getDateFrom() {
+        return dateFrom;
+    }
+
+    public Object getDateTo() {
+        return dateTo;
+    }
+
+    public int getAvailableRooms() {
+        return availableRooms;
     }
 
 }

@@ -3,7 +3,7 @@ package com.example.hbv401g8t;
 
 import java.time.LocalDate;
 
-// mock class
+
 public class DayTours {
     private int tourId;
     private String name;
@@ -15,6 +15,11 @@ public class DayTours {
         this.name = name;
         this.location = location;
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     public int getTourId() {
