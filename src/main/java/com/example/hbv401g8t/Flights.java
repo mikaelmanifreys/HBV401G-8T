@@ -32,4 +32,16 @@ public class Flights {
     public String getFlightPlaces() {
         return departurePlace + " - " + destination;
     }
+
+    public String getDeparturePlace() {
+        return departurePlace;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public String getFlightId() {
+        return flightId;
+    }
 }

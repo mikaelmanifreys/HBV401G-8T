@@ -32,4 +32,12 @@ public class Hotels {
         return name;
     }
 
+    public String getHotelLocation() {
+        return location;
+    }
+
+    public int getHotelId() {
+        return hotelId;
+    }
+
 }

@@ -77,7 +77,7 @@ public class AdministratorController {
         int flugKomutimiMin = (int) fxFlugKomutimiMin.getValue();
         String flugnumer = fxFlugnumer.getText();
         int fjoldiFarthega = Integer.parseInt(fxFjoldiFarthega.getText());
-        Flights flug = new Flights(flugnumer, fjoldiFarthega, flugTil, flugFra, flugDagsetning, flugBrottfararTimiKlst, flugBrottfararTimiMin, flugKomutimiKlst, flugKomutimiMin);
+        Flights flug = new Flights(flugnumer, fjoldiFarthega, flugFra, flugTil, flugDagsetning, flugBrottfararTimiKlst, flugBrottfararTimiMin, flugKomutimiKlst, flugKomutimiMin);
         String hotelNafn = fxHotelNafn.getText();
         String hotelStadsetning = fxHotelStadsetning.getText();
         LocalDate hotelDagsetningFra = fxHotelDagsetningFra.getValue();

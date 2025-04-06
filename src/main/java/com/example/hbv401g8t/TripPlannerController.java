@@ -3,7 +3,6 @@ package com.example.hbv401g8t;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -16,9 +15,7 @@ public class TripPlannerController {
     public Button fxOnBookings;
     public Button fxStadfestingartakki;
     public Label fxStadfestingartexti;
-    public Button fxSkraInn;
     public Button fxDateSubmit;
-    public Button fxTilBakaButton;
     public TextField fxNotandanafn;
     public Button fxSkraInnButton;
     public PasswordField fxLykilord;
@@ -31,6 +28,9 @@ public class TripPlannerController {
     public TextField fxLeitaHeitiFerdar;
     public TextField fxleitaStadsetningFerdar;
     public TextField fxLeitaIdFerdar;
+    public Button fxLeitaIFlugum;
+    public Button fxLeitaIHotelumButton;
+    public Button fxLeitaIDagsferdumButton;
     private List<TripPackage> tripPackages;
     private List<Booking> bookings;
     private TripPlanner tripPlanner;
@@ -164,16 +164,74 @@ public class TripPlannerController {
         }
     }
 
-    public void tilBaka(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Bookings.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) fxTilBakaButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void leitaIFlugum(ActionEvent actionEvent) {
+        String leitBrottfararstadur = fxLeitaBrottfarastadur.getText().toLowerCase();
+        String leitKomustadur = fxLeitaKomustadur.getText().toLowerCase();
+        String leitFlugnumer = fxLeitaFlugnumer.getText().toLowerCase();
+
+        fxFlights.getItems().clear();
+
+        List<TripPackage> packages = TripPlanner.getInstance().getTripPackages();
+        for (TripPackage pkg : packages) {
+            for (Flights f : pkg.getFlights()) {
+                boolean passar = true;
+
+                if (!leitBrottfararstadur.isBlank() &&
+                        (f.getDeparturePlace() == null || !f.getDeparturePlace().toLowerCase().contains(leitBrottfararstadur))) {
+                    passar = false;
+                }
+
+                if (!leitKomustadur.isBlank() &&
+                        (f.getDestination() == null || !f.getDestination().toLowerCase().contains(leitKomustadur))) {
+                    passar = false;
+                }
+
+                if (!leitFlugnumer.isBlank() &&
+                        (f.getFlightId() == null || !f.getFlightId().toLowerCase().contains(leitFlugnumer))) {
+                    passar = false;
+                }
+
+                if (passar) {
+                    fxFlights.getItems().add(f.getDeparturePlace() + " - " + f.getDestination());
+                }
+            }
         }
+    }
+
+    public void leitaIHotelum(ActionEvent actionEvent) {
+        String leitHotelNafn = fxLeitaHotelNafn.getText().toLowerCase();
+        String leitHotelStadsetning = fxLeitaHotelStadsetning.getText().toLowerCase();
+        int leitHotelID = Integer.parseInt(fxLeitaHotelID.getText());
+
+        fxFlights.getItems().clear();
+
+        List<TripPackage> packages = TripPlanner.getInstance().getTripPackages();
+        for (TripPackage pkg : packages) {
+            for (Hotels h : pkg.getHotel()) {
+                boolean passar = true;
+
+                if (!leitHotelNafn.isBlank() &&
+                        (h.getHotelName() == null || !h.getHotelName().toLowerCase().contains(leitHotelNafn))) {
+                    passar = false;
+                }
+
+                if (!leitHotelStadsetning.isBlank() &&
+                        (h.getHotelLocation() == null || !h.getHotelLocation().toLowerCase().contains(leitHotelStadsetning))) {
+                    passar = false;
+                }
+
+                if (leitHotelID != 0 && h.getHotelId() != leitHotelID) {
+                    passar = false;
+                }
+
+                if (passar) {
+                    fxFlights.getItems().add(h.getHotelName());
+                }
+            }
+        }
+    }
+
+    public void leitaIDagsferdum(ActionEvent actionEvent) {
     }
 
 }
