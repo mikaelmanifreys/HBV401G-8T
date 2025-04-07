@@ -50,6 +50,9 @@ public class TripPlannerController {
     public Label fxInnskradurNotandi;
     public Button fxTilBakaButton;
     public Button fxBokanirButton;
+    public Label fxDagsferdVerd;
+    public Label fxHotelVerd;
+    public Label fxVerdLabel;
     private TripPlanner tripPlanner;
     private LocalDate fraDate;
     private LocalDate tilDate;
@@ -97,8 +100,7 @@ public class TripPlannerController {
         Hotels hotel = fxHotels.getSelectionModel().getSelectedItem();
         DayTours tour = fxDayTours.getSelectionModel().getSelectedItem();
 
-
-        if (flight == null || hotel == null || tour == null || fraDate == null || tilDate == null || loggedInCustomer == null) {
+        if (flight == null || hotel == null || tour == null || fraDate == null || tilDate == null) {
             fxStadfestingartexti.setText("Vinsamlegast veldu úr öllum flokkum.");
         } else {
             TripPackage newPackage = new TripPackage(flight.getDestination(), 0);
@@ -136,6 +138,7 @@ public class TripPlannerController {
             fxDayTours.getItems().addAll(pkg.getDayTours());
         }
 
+
         // Load mock data
         for (Flights mockData : MockData.getMockFlights()) {
             fxFlights.getItems().add(mockData);
@@ -146,6 +149,7 @@ public class TripPlannerController {
         for (DayTours mockData : MockData.getMockDayTours()) {
             fxDayTours.getItems().add(mockData);
         }
+
 
     }
 
@@ -306,6 +310,28 @@ public class TripPlannerController {
         }
     }
 
+    public void uppfaeraPakkaverd() {
+        int flightPrice = 0;
+        int hotelPrice = 0;
+        int dayTourPrice = 0;
+
+        Flights f = fxFlights.getSelectionModel().getSelectedItem();
+        Hotels h = fxHotels.getSelectionModel().getSelectedItem();
+        DayTours d = fxDayTours.getSelectionModel().getSelectedItem();
+
+        if (f != null) flightPrice = f.getPrice();
+        if (h != null && fraDate != null && tilDate != null) {
+            long nights = tilDate.toEpochDay() - fraDate.toEpochDay();
+            if (nights <= 0) nights = 1;
+            hotelPrice = h.getPrice() * (int) nights;
+        }
+        if (d != null) dayTourPrice = d.getPrice();
+
+        int total = flightPrice + hotelPrice + dayTourPrice;
+
+        fxVerdLabel.setText("Verð fyrir pakka: " + total + " kr.");
+    }
+
     public void flugValid(MouseEvent mouseEvent) {
         Flights f = fxFlights.getSelectionModel().getSelectedItem();
         if (f != null) {
@@ -315,7 +341,8 @@ public class TripPlannerController {
             fxDagsetning.setText("Dagsetning:\n" + f.getDate().toString());
             fxBrottfarartimi.setText("Brottfarartími:\n" + f.getDepartureTime());
             fxKomutimi.setText("Komutími:\n" + f.getArrivalTime());
-            fxHamarksverd.setText("Hámarksverð:\n" + f.getPrice());
+            fxHamarksverd.setText("Verð:\n" + f.getPrice());
+            uppfaeraPakkaverd();
         }
     }
 
@@ -330,8 +357,9 @@ public class TripPlannerController {
             if (tilDate != null) {
                 fxHotelBrottfarardagur.setText("Brottfarardagur:\n" + tilDate);
             }
-
+            fxHotelVerd.setText("Verð á nótt:\n" + h.getPrice());
             fxHotelID.setText("Hótel ID:\n" + h.getHotelId());
+            uppfaeraPakkaverd();
         }
     }
 
@@ -342,6 +370,8 @@ public class TripPlannerController {
             fxDagsferdStadsetning.setText("Staðsetning dagsferðar:\n" + d.getTourLocation());
             fxDagsferdDagsetning.setText("Dagsetning dagsferðar:\n" + d.getTourDate());
             fxDagsferdID.setText("ID dagsferðar:\n" + d.getTourId());
+            fxDagsferdVerd.setText("Verð:\n" + d.getPrice());
+            uppfaeraPakkaverd();
         }
     }
 
