@@ -73,7 +73,9 @@ public class TripPlannerController {
 
     @FXML
     public void initialize() {
-
+        List<Flights> mockFlug = MockData.getMockFlights();
+        List<Hotels> mockHotels = MockData.getMockHotels();
+        List<DayTours> mockTours = MockData.getMockDayTours();
     }
 
 
@@ -128,12 +130,27 @@ public class TripPlannerController {
         fxHotels.getItems().clear();
         fxDayTours.getItems().clear();
 
+
         List<TripPackage> packages = TripPlanner.getInstance().getTripPackages();
         for (TripPackage pkg : packages) {
             fxFlights.getItems().addAll(pkg.getFlights());
             fxHotels.getItems().addAll(pkg.getHotel());
             fxDayTours.getItems().addAll(pkg.getDayTours());
         }
+
+
+        // Load mock data
+        for (Flights mockData : MockData.getMockFlights()) {
+            fxFlights.getItems().add(mockData);
+        }
+        for (Hotels mockData : MockData.getMockHotels()) {
+            fxHotels.getItems().add(mockData);
+        }
+        for (DayTours mockData : MockData.getMockDayTours()) {
+            fxDayTours.getItems().add(mockData);
+        }
+
+
     }
 
 
@@ -169,6 +186,28 @@ public class TripPlannerController {
                 }
             }
         }
+        for (Flights mock : MockData.getMockFlights()) {
+            boolean passar = true;
+
+            if (!leitBrottfararstadur.isBlank() &&
+                    (mock.getDeparturePlace() == null || !mock.getDeparturePlace().toLowerCase().contains(leitBrottfararstadur))) {
+                passar = false;
+            }
+
+            if (!leitKomustadur.isBlank() &&
+                    (mock.getDestination() == null || !mock.getDestination().toLowerCase().contains(leitKomustadur))) {
+                passar = false;
+            }
+
+            if (!leitFlugnumer.isBlank() &&
+                    (mock.getFlightId() == null || !mock.getFlightId().toLowerCase().contains(leitFlugnumer))) {
+                passar = false;
+            }
+
+            if (passar) {
+                fxFlights.getItems().add(mock);
+            }
+        }
     }
 
     public void leitaIHotelum(ActionEvent actionEvent) {
@@ -202,6 +241,23 @@ public class TripPlannerController {
                 }
             }
         }
+        for (Hotels mock : MockData.getMockHotels()) {
+            boolean passar = leitHotelNafn.isBlank() ||
+                    (mock.getHotelName() != null && mock.getHotelName().toLowerCase().contains(leitHotelNafn));
+
+            if (!leitHotelStadsetning.isBlank() &&
+                    (mock.getHotelLocation() == null || !mock.getHotelLocation().toLowerCase().contains(leitHotelStadsetning))) {
+                passar = false;
+            }
+
+            if (leitHotelID != null && mock.getHotelId() != leitHotelID) {
+                passar = false;
+            }
+
+            if (passar) {
+                fxHotels.getItems().add(mock);
+            }
+        }
     }
 
     public void leitaIDagsferdum(ActionEvent actionEvent) {
@@ -233,6 +289,23 @@ public class TripPlannerController {
                 if (passar) {
                     fxDayTours.getItems().add(d);
                 }
+            }
+        }
+        for (DayTours mock : MockData.getMockDayTours()) {
+            boolean passar = leitDagsferdNafn.isBlank() ||
+                    (mock.getTourName() != null && mock.getTourName().toLowerCase().contains(leitDagsferdNafn));
+
+            if (!leitDagsferdStadsetning.isBlank() &&
+                    (mock.getTourLocation() == null || !mock.getTourLocation().toLowerCase().contains(leitDagsferdStadsetning))) {
+                passar = false;
+            }
+
+            if (leitDagsferdID != null && mock.getTourId() != leitDagsferdID) {
+                passar = false;
+            }
+
+            if (passar) {
+                fxDayTours.getItems().add(mock);
             }
         }
     }
