@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -15,13 +16,17 @@ public class LogInController {
     public TextField fxNotandanafn;
     public PasswordField fxLykilord;
     public Button fxSkraInnButton;
+    public Label fxLoginInfo;
 
     public static void main(String[] args) {
 
     }
 
-    public void SkraInn(ActionEvent actionEvent) {
-        if (fxNotandanafn.getText().equals("admin") && fxLykilord.getText().equals("admin")) {
+    public void login(String username, String password) {
+        username = fxNotandanafn.getText();
+        password = fxLykilord.getText();;
+
+        if (username.equals("admin") && password.equals("admin")) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hbv401g8t/Administrator.fxml"));
                 Stage stage = (Stage) fxSkraInnButton.getScene().getWindow();
@@ -49,4 +54,21 @@ public class LogInController {
             }
         }
     }
+
+    public void SkraInn(ActionEvent actionEvent) {
+        String username = fxNotandanafn.getText();
+        String password = fxLykilord.getText();
+
+        if (!isValidInput(username) || !isValidInput(password)) {
+            fxLoginInfo.setText("Username and password must be at least 3 characters long and cannot be empty.");
+        } else {
+            login(username, password);
+        }
+    }
+
+    private Boolean isValidInput(String input) {
+        return input != null && input.trim().length() >= 3;
+    }
 }
+
+
