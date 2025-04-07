@@ -35,7 +35,7 @@ public class TripPackage {
         return flights;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 

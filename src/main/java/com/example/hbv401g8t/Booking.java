@@ -18,7 +18,14 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Bókun til: " + trip.getDestination() + " Verð: " + trip.getPrice() + " Frá: " + dateFrom + " Til: " + dateTo;
+        int flightPrice = trip.getFlights().get(0).getPrice();
+        int hotelPrice = trip.getHotel().get(0).getPrice();
+        int dayTourPrice = trip.getDayTours().get(0).getPrice();
+        long days = dateTo.toEpochDay() - dateFrom.toEpochDay();
+        int totalHotelCost = hotelPrice * (int) days;
+        int totalCost = flightPrice + totalHotelCost + dayTourPrice;
+
+        return "Bókun til: " + trip.getDestination() + " Verð: " + totalCost + " Frá: " + dateFrom + " Til: " + dateTo;
     }
 
     public boolean processPayment() {

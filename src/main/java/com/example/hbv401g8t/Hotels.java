@@ -1,23 +1,16 @@
 package com.example.hbv401g8t;
 
-import java.time.LocalDate;
-
 public class Hotels {
     private int hotelId;
     private String name;
     private String location;
-    private int availableRooms;
-    private LocalDate dateFrom;
-    private LocalDate dateTo;
+    private int price;
 
-
-    public Hotels(String name, String location, LocalDate dateFrom, LocalDate dateTo, int hotelId, int availableRooms) {
+    public Hotels(String name, String location, int hotelId, int price) {
         this.hotelId = hotelId;
         this.name = name;
         this.location = location;
-        this.availableRooms = availableRooms;
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
+        this.price = price;
     }
 
     @Override
@@ -25,12 +18,9 @@ public class Hotels {
         return name;
     }
 
-    public boolean checkAvailability() {
-        return availableRooms > 0;
-    }
 
     public String getHotelDetails() {
-        return "Hotel " + name + " ID: " + hotelId + "Date From:" + dateFrom + "To:" + dateTo + " Location: " + location + " Rooms available? " + checkAvailability();
+        return "Hotel " + name + " ID: " + hotelId + " Location: " + location;
     }
 
     public String getHotelName() {
@@ -44,17 +34,10 @@ public class Hotels {
     public int getHotelId() {
         return hotelId;
     }
+    
 
-    public Object getDateFrom() {
-        return dateFrom;
-    }
-
-    public Object getDateTo() {
-        return dateTo;
-    }
-
-    public int getAvailableRooms() {
-        return availableRooms;
+    public int getPrice() {
+        return price;
     }
 
 }

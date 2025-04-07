@@ -19,8 +19,6 @@ import java.time.LocalDate;
 public class AdministratorController {
     public Button fxTilBakaTakki;
     public Button fxBaetaVidTakki;
-    public DatePicker fxHotelDagsetningTil;
-    public DatePicker fxHotelDagsetningFra;
     public TextField fxHotelStadsetning;
     public TextField fxHotelNafn;
     public TextField fxFlugBrottfararstadur;
@@ -29,16 +27,16 @@ public class AdministratorController {
     public DatePicker fxDayTourDagsetning;
     public TextField fxDayTourNafn;
     public TextField fxFlugnumer;
-    public TextField fxFjoldiFarthega;
     public ComboBox fxFlugBrottfaratimiKlst;
     public ComboBox fxFlugBrottfaratimiMin;
     public ComboBox fxFlugKomutimiKlst;
     public ComboBox fxFlugKomutimiMin;
     public TextField fxHotelId;
-    public TextField fxFjoldiLausraHerbergja;
     public TextField fxDayTourId;
     public TextField fxDayTourStadsetning;
-    public TextField fxHamarksverd;
+    public TextField fxFlugVerd;
+    public TextField fxDagsferdVerd;
+    public TextField fxHotelVerd;
 
     @FXML
     public void initialize() {
@@ -75,21 +73,19 @@ public class AdministratorController {
         int flugKomutimiKlst = (int) fxFlugKomutimiKlst.getValue();
         int flugKomutimiMin = (int) fxFlugKomutimiMin.getValue();
         String flugnumer = fxFlugnumer.getText();
-        int fjoldiFarthega = Integer.parseInt(fxFjoldiFarthega.getText());
-        int hamarksverd = Integer.parseInt(fxHamarksverd.getText());
-        Flights flug = new Flights(flugnumer, fjoldiFarthega, flugFra, flugTil, flugDagsetning, flugBrottfararTimiKlst, flugBrottfararTimiMin, flugKomutimiKlst, flugKomutimiMin, hamarksverd);
+        int hamarksverd = Integer.parseInt(fxFlugVerd.getText());
+        Flights flug = new Flights(flugnumer, flugFra, flugTil, flugDagsetning, flugBrottfararTimiKlst, flugBrottfararTimiMin, flugKomutimiKlst, flugKomutimiMin, hamarksverd);
         String hotelNafn = fxHotelNafn.getText();
         String hotelStadsetning = fxHotelStadsetning.getText();
-        LocalDate hotelDagsetningFra = fxHotelDagsetningFra.getValue();
-        LocalDate hotelDagsetningTil = fxHotelDagsetningTil.getValue();
         int hotelId = Integer.parseInt(fxHotelId.getText());
-        int lausHerbergi = Integer.parseInt(fxFjoldiLausraHerbergja.getText());
-        Hotels hotel = new Hotels(hotelNafn, hotelStadsetning, hotelDagsetningFra, hotelDagsetningTil, hotelId, lausHerbergi);
+        int hotelVerd = Integer.parseInt(fxHotelVerd.getText());
+        Hotels hotel = new Hotels(hotelNafn, hotelStadsetning, hotelId, hotelVerd);
         String dayTourNafn = fxDayTourNafn.getText();
         int dayTourId = Integer.parseInt(fxDayTourId.getText());
         String dayTourStadsetning = fxDayTourStadsetning.getText();
         LocalDate dayTourDate = fxDayTourDagsetning.getValue();
-        DayTours dayTour = new DayTours(dayTourNafn, dayTourStadsetning, dayTourId, dayTourDate);
+        int dayTourPrice = Integer.parseInt(fxDagsferdVerd.getText());
+        DayTours dayTour = new DayTours(dayTourNafn, dayTourStadsetning, dayTourId, dayTourDate, dayTourPrice);
         TripPackage pkg = new TripPackage(flugTil, 999);
         pkg.addFlight(flug);
         pkg.addHotel(hotel);

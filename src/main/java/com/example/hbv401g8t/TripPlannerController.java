@@ -243,7 +243,6 @@ public class TripPlannerController {
             fxDagsetning.setText("Dagsetning:\n" + f.getDate().toString());
             fxBrottfarartimi.setText("Brottfarartími:\n" + f.getDepartureTime());
             fxKomutimi.setText("Komutími:\n" + f.getArrivalTime());
-            fxHamarkFarthega.setText("Farþegafjöldi:\n" + f.getFjoldiFarthega());
             fxHamarksverd.setText("Hámarksverð:\n" + f.getPrice());
         }
     }
@@ -253,10 +252,14 @@ public class TripPlannerController {
         if (h != null) {
             fxHotelNafn.setText("Nafn hótels:\n" + h.getHotelName());
             fxHotelStadsetning.setText("Staðsetning hótels:\n" + h.getHotelLocation());
-            fxHotelKomudagur.setText("Komudagur:\n" + h.getDateFrom());
-            fxHotelBrottfarardagur.setText("Brottfarardagur:\n" + h.getDateTo());
+            if (fraDate != null) {
+                fxHotelKomudagur.setText("Komudagur:\n" + fraDate);
+            }
+            if (tilDate != null) {
+                fxHotelBrottfarardagur.setText("Brottfarardagur:\n" + tilDate);
+            }
+
             fxHotelID.setText("Hótel ID:\n" + h.getHotelId());
-            fxHotelLausHerbergi.setText("Fjöldi lausra herbergja:\n" + h.getAvailableRooms());
         }
     }
 

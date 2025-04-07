@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class Flights {
     private String flightId;
-    private int fjoldiFarthega;
     private int departureTimeHour;
     private int departureTimeMin;
     private int arrivalTimeHour;
@@ -14,9 +13,8 @@ public class Flights {
     private LocalDate date;
     private int highestPrice;
 
-    public Flights(String flightId, int fjoldiFarthega, String departurePlace, String destination, LocalDate date, int departureTimeHour, int departureTimeMin, int arrivalTimeHour, int arrivalTimeMin, int highestPrice) {
+    public Flights(String flightId, String departurePlace, String destination, LocalDate date, int departureTimeHour, int departureTimeMin, int arrivalTimeHour, int arrivalTimeMin, int highestPrice) {
         this.flightId = flightId;
-        this.fjoldiFarthega = fjoldiFarthega;
         this.departureTimeHour = departureTimeHour;
         this.departureTimeMin = departureTimeMin;
         this.arrivalTimeHour = arrivalTimeHour;
@@ -33,7 +31,7 @@ public class Flights {
     }
 
     public String getFlightDetails() {
-        return "flight " + flightId + " with " + fjoldiFarthega + "from" + departurePlace + "to" + destination + " on " + date + departureTimeHour + ":" + departureTimeMin + " to " + arrivalTimeHour + ":" + arrivalTimeMin;
+        return "flight " + flightId + "from" + departurePlace + "to" + destination + " on " + date + departureTimeHour + ":" + departureTimeMin + " to " + arrivalTimeHour + ":" + arrivalTimeMin;
     }
 
     public String getFlightPlaces() {
@@ -50,10 +48,6 @@ public class Flights {
 
     public String getFlightId() {
         return flightId;
-    }
-
-    public int getFjoldiFarthega() {
-        return fjoldiFarthega;
     }
 
     public String getArrivalTime() {

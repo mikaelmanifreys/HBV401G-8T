@@ -9,12 +9,14 @@ public class DayTours {
     private String name;
     private String location;
     private LocalDate date;
+    private int price;
 
-    public DayTours(String name, String location, int tourId, LocalDate date) {
+    public DayTours(String name, String location, int tourId, LocalDate date, int price) {
         this.tourId = tourId;
         this.name = name;
         this.location = location;
         this.date = date;
+        this.price = price;
     }
 
     @Override
@@ -38,5 +40,8 @@ public class DayTours {
         return date;
     }
 
+    public int getPrice() {
+        return price;
+    }
 
 }
