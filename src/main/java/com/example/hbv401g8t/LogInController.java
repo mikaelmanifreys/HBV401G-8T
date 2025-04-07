@@ -18,10 +18,6 @@ public class LogInController {
     public Button fxSkraInnButton;
     public Label fxLoginInfo;
 
-    public static void main(String[] args) {
-
-    }
-
     public void login(String username, String password) {
         username = fxNotandanafn.getText();
         password = fxLykilord.getText();;
