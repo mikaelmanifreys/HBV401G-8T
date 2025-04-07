@@ -95,7 +95,8 @@ public class TripPlannerController {
         Hotels hotel = fxHotels.getSelectionModel().getSelectedItem();
         DayTours tour = fxDayTours.getSelectionModel().getSelectedItem();
 
-        if (flight == null || hotel == null || tour == null || fraDate == null || tilDate == null) {
+
+        if (flight == null || hotel == null || tour == null || fraDate == null || tilDate == null || loggedInCustomer == null) {
             fxStadfestingartexti.setText("Vinsamlegast veldu úr öllum flokkum.");
         } else {
             TripPackage newPackage = new TripPackage(flight.getDestination(), 0);
@@ -125,12 +126,22 @@ public class TripPlannerController {
         fxHotels.getItems().clear();
         fxDayTours.getItems().clear();
 
+        // Mock data
+        Flights flights = new Flights("FI123", 2, "Reykjavik", "New York", LocalDate.now(), 10, 30, 12, 45, 500);
+        Hotels hotels = new Hotels("Hótel", "New York", LocalDate.now(), LocalDate.now().plusDays(5), 1, 10);
+        DayTours dayTours = new DayTours("Dagsferð", "New York", 1, LocalDate.now());
+
         List<TripPackage> packages = TripPlanner.getInstance().getTripPackages();
         for (TripPackage pkg : packages) {
             fxFlights.getItems().addAll(pkg.getFlights());
             fxHotels.getItems().addAll(pkg.getHotel());
             fxDayTours.getItems().addAll(pkg.getDayTours());
         }
+
+        //Bæta við mock gögnum
+        fxFlights.getItems().add(flights);
+        fxHotels.getItems().add(hotels);
+        fxDayTours.getItems().add(dayTours);
     }
 
 
