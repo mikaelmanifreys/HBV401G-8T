@@ -13,7 +13,7 @@
         <HBox prefHeight="136.0" prefWidth="660.0">
             <children>
                 <Label prefHeight="98.0" prefWidth="344.0" text="                                               Trip Planner" />
-            <Label fx:id="fxInnskradurNotandi" prefHeight="100.0" prefWidth="167.0" />
+                <Label fx:id="fxInnskradurNotandi" prefHeight="100.0" prefWidth="167.0" />
                 <VBox prefHeight="112.0" prefWidth="178.0">
                     <children>
                         <DatePicker fx:id="fxFraDate" prefHeight="34.0" prefWidth="141.0" promptText="Frá" />
@@ -77,6 +77,7 @@
                         <Label fx:id="fxHotelBrottfarardagur" />
                         <Label fx:id="fxHotelLausHerbergi" />
                         <Label fx:id="fxHotelID" />
+                        <Label fx:id="fxHotelVerd" />
                     </children>
                 </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0">
@@ -85,6 +86,7 @@
                         <Label fx:id="fxDagsferdID" />
                         <Label fx:id="fxDagsferdDagsetning" />
                         <Label fx:id="fxDagsferdStadsetning" />
+                        <Label fx:id="fxDagsferdVerd" />
                     </children>
                 </VBox>
             </children>
@@ -92,8 +94,9 @@
         <HBox prefHeight="103.0" prefWidth="660.0">
             <children>
                 <Button fx:id="fxStadfestingartakki" mnemonicParsing="false" onAction="#StadfestaVal" prefHeight="96.0" prefWidth="126.0" text="Staðfesta val" />
-            <Button fx:id="fxBokanirButton" mnemonicParsing="false" onAction="#opnaBokanir" prefHeight="96.0" prefWidth="126.0" text="Bókanir" />
-            <Button fx:id="fxTilBakaButton" mnemonicParsing="false" onAction="#tilBaka" prefHeight="96.0" prefWidth="126.0" text="Til baka" />
+                <Button fx:id="fxBokanirButton" mnemonicParsing="false" onAction="#opnaBokanir" prefHeight="96.0" prefWidth="126.0" text="Bókanir" />
+                <Button fx:id="fxTilBakaButton" mnemonicParsing="false" onAction="#tilBaka" prefHeight="96.0" prefWidth="126.0" text="Til baka" />
+            <Label fx:id="fxVerdLabel" prefHeight="98.0" prefWidth="207.0" />
                 <Label fx:id="fxStadfestingartexti" prefHeight="94.0" prefWidth="452.0" />
             </children>
         </HBox>
