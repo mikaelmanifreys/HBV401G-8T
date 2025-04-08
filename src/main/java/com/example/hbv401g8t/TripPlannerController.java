@@ -1,5 +1,7 @@
 package com.example.hbv401g8t;
 
+import com.example.hbv401g8t.hotel.DatabaseConnection;
+import com.example.hbv401g8t.hotel.Hotel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,6 +60,7 @@ public class TripPlannerController {
     private LocalDate tilDate;
     private Customer loggedInCustomer;
 
+
     @FXML
     private ListView<Flights> fxFlights;
     @FXML
@@ -71,11 +74,10 @@ public class TripPlannerController {
     @FXML
     private Label fxDateLabel;
 
+
     @FXML
     public void initialize() {
-        List<Flights> mockFlug = MockData.getMockFlights();
-        List<Hotels> mockHotels = MockData.getMockHotels();
-        List<DayTours> mockTours = MockData.getMockDayTours();
+
     }
 
 
@@ -150,7 +152,10 @@ public class TripPlannerController {
             fxDayTours.getItems().add(mockData);
         }
 
-
+        List<Hotel> dbHotels = DatabaseConnection.getAllHotelsFromDB();
+        for (Hotel h : dbHotels) {
+            fxHotels.getItems().add(new Hotels(h.getName(), h.getRegion(), h.getId(), h.getPrice()));
+        }
     }
 
 

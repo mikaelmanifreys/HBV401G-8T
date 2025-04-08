@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class BookingsController {
     public Button fxTilBakaButton;
     public TripPlanner tripPlanner;
     public Label fxInnskradurNotandi;
+    public Label fxBokunUpplysingarLabel;
     private Customer loggedInCustomer;
 
     @FXML
@@ -46,6 +48,7 @@ public class BookingsController {
             }
             fxBokanir.getItems().remove(selectedIndex);
         }
+        fxBokunUpplysingarLabel.setText("");
     }
 
     public void tilBaka(ActionEvent actionEvent) {
@@ -75,5 +78,14 @@ public class BookingsController {
     }
 
 
+    public void bokunValin(MouseEvent mouseEvent) {
+        Booking valinBokun = fxBokanir.getSelectionModel().getSelectedItem();
+        TripPackage trip = valinBokun.getTrip();
+        Flights flug = trip.getFlights().get(0);
+        Hotels hotel = trip.getHotel().get(0);
+        DayTours dayTour = trip.getDayTours().get(0);
+        fxBokunUpplysingarLabel.setText("Flug frá: " + flug.getDeparturePlace() + " til: " + flug.getDestination() + " þann: " + flug.getDate() + " klukkan: " + flug.getDepartureTime() + "-" + flug.getArrivalTime() + ".\nGisting á: " + hotel.getHotelName() + " frá: " + valinBokun.getDateFrom() + " til: " + valinBokun.getDateTo() + ".\nDagsferð: " + dayTour.getTourName() + " þann: " + dayTour.getTourDate() + ". Staðsetning: " + dayTour.getTourLocation());
+
+    }
 }
 
