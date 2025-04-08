@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class TripPlannerController {
     public Button fxStadfestingartakki;
@@ -95,6 +96,7 @@ public class TripPlannerController {
         } else {
             System.out.println("Ferð frá: " + fraDate + " til: " + tilDate);
         }
+
     }
 
     public void StadfestaVal(ActionEvent actionEvent) {
@@ -159,7 +161,7 @@ public class TripPlannerController {
     }
 
 
-    public void leitaIFlugum(ActionEvent actionEvent) {
+    public void leitaIFlugum() {
         String leitBrottfararstadur = fxLeitaBrottfarastadur.getText().toLowerCase();
         String leitKomustadur = fxLeitaKomustadur.getText().toLowerCase();
         String leitFlugnumer = fxLeitaFlugnumer.getText().toLowerCase();
@@ -215,7 +217,7 @@ public class TripPlannerController {
         }
     }
 
-    public void leitaIHotelum(ActionEvent actionEvent) {
+    public void leitaIHotelum() {
         String leitHotelNafn = fxLeitaHotelNafn.getText().toLowerCase();
         String leitHotelStadsetning = fxLeitaHotelStadsetning.getText().toLowerCase();
         Integer leitHotelID = null;
@@ -340,31 +342,49 @@ public class TripPlannerController {
     public void flugValid(MouseEvent mouseEvent) {
         Flights f = fxFlights.getSelectionModel().getSelectedItem();
         if (f != null) {
-            fxBrottfarastadur.setText("Brottfararstaður: " + f.getDeparturePlace());
-            fxAfangastadur.setText("Áfangastaður: " + f.getDestination());
-            fxFlugnumer.setText("Flugnúmer: " + f.getFlightId());
-            fxDagsetning.setText("Dagsetning: " + f.getDate().toString());
-            fxBrottfarartimi.setText("Brottfarartími: " + f.getDepartureTime());
-            fxKomutimi.setText("Komutími: " + f.getArrivalTime());
-            fxHamarksverd.setText("Verð: " + f.getPrice());
-            uppfaeraPakkaverd();
+            String hotelLocation = f.getDestination();
+            if (!Objects.equals(fxLeitaKomustadur.getText(), hotelLocation)) {
+                fxHotels.getSelectionModel().clearSelection();
+                fxLeitaHotelStadsetning.setText(hotelLocation);
+                leitaIHotelum();
+            } else {
+                fxBrottfarastadur.setText("Brottfararstaður: " + f.getDeparturePlace());
+                fxAfangastadur.setText("Áfangastaður: " + f.getDestination());
+                fxFlugnumer.setText("Flugnúmer: " + f.getFlightId());
+                fxDagsetning.setText("Dagsetning: " + f.getDate().toString());
+                fxBrottfarartimi.setText("Brottfarartími: " + f.getDepartureTime());
+                fxKomutimi.setText("Komutími: " + f.getArrivalTime());
+                fxHamarksverd.setText("Verð: " + f.getPrice());
+                uppfaeraPakkaverd();
+            }
         }
+
+
     }
 
     public void hotelValid(MouseEvent mouseEvent) {
         Hotels h = fxHotels.getSelectionModel().getSelectedItem();
         if (h != null) {
-            fxHotelNafn.setText("Nafn hótels: " + h.getHotelName());
-            fxHotelStadsetning.setText("Staðsetning hótels: " + h.getHotelLocation());
-            if (fraDate != null) {
-                fxHotelKomudagur.setText("Komudagur: " + fraDate);
+
+
+            String flightDestination = h.getHotelLocation();
+            if (fxLeitaKomustadur.getText() != flightDestination) {
+                fxFlights.getSelectionModel().clearSelection();
+                fxLeitaKomustadur.setText(flightDestination);
+                leitaIFlugum();
+            } else {
+                fxHotelNafn.setText("Nafn hótels: " + h.getHotelName());
+                fxHotelStadsetning.setText("Staðsetning hótels: " + h.getHotelLocation());
+                if (fraDate != null) {
+                    fxHotelKomudagur.setText("Komudagur: " + fraDate);
+                }
+                if (tilDate != null) {
+                    fxHotelBrottfarardagur.setText("Brottfarardagur: " + tilDate);
+                }
+                fxHotelVerd.setText("Verð á nótt: " + h.getPrice());
+                fxHotelID.setText("Hótel ID: " + h.getHotelId());
+                uppfaeraPakkaverd();
             }
-            if (tilDate != null) {
-                fxHotelBrottfarardagur.setText("Brottfarardagur: " + tilDate);
-            }
-            fxHotelVerd.setText("Verð á nótt: " + h.getPrice());
-            fxHotelID.setText("Hótel ID: " + h.getHotelId());
-            uppfaeraPakkaverd();
         }
     }
 
