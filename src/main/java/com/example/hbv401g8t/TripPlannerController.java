@@ -265,9 +265,27 @@ public class TripPlannerController {
                 fxHotels.getItems().add(mock);
             }
         }
+        List<Hotel> dbHotels = DatabaseConnection.getAllHotelsFromDB();
+        for (Hotel h : dbHotels) {
+            boolean passar = leitHotelNafn.isBlank() ||
+                    (h.getName() != null && h.getName().toLowerCase().contains(leitHotelNafn));
+
+            if (!leitHotelStadsetning.isBlank() &&
+                    (h.getRegion() == null || !h.getRegion().toLowerCase().contains(leitHotelStadsetning))) {
+                passar = false;
+            }
+
+            if (leitHotelID != null && h.getId() != leitHotelID) {
+                passar = false;
+            }
+
+            if (passar) {
+                fxHotels.getItems().add(new Hotels(h.getName(), h.getRegion(), h.getId(), h.getPrice()));
+            }
+        }
     }
 
-    public void leitaIDagsferdum(ActionEvent actionEvent) {
+    public void leitaIDagsferdum() {
         String leitDagsferdNafn = fxLeitaHeitiFerdar.getText().toLowerCase();
         String leitDagsferdStadsetning = fxleitaStadsetningFerdar.getText().toLowerCase();
         Integer leitDagsferdID = null;
@@ -343,10 +361,13 @@ public class TripPlannerController {
         Flights f = fxFlights.getSelectionModel().getSelectedItem();
         if (f != null) {
             String hotelLocation = f.getDestination();
-            if (!Objects.equals(fxLeitaKomustadur.getText(), hotelLocation)) {
+            if (!Objects.equals(fxLeitaKomustadur.getText(), hotelLocation) && !Objects.equals(fxLeitaHotelStadsetning.getText(), hotelLocation)) {
                 fxHotels.getSelectionModel().clearSelection();
+                fxDayTours.getSelectionModel().clearSelection();
                 fxLeitaHotelStadsetning.setText(hotelLocation);
+                fxleitaStadsetningFerdar.setText(hotelLocation);
                 leitaIHotelum();
+                leitaIDagsferdum();
             } else {
                 fxBrottfarastadur.setText("Brottfararstaður: " + f.getDeparturePlace());
                 fxAfangastadur.setText("Áfangastaður: " + f.getDestination());
@@ -365,13 +386,14 @@ public class TripPlannerController {
     public void hotelValid(MouseEvent mouseEvent) {
         Hotels h = fxHotels.getSelectionModel().getSelectedItem();
         if (h != null) {
-
-
             String flightDestination = h.getHotelLocation();
-            if (fxLeitaKomustadur.getText() != flightDestination) {
+            if (!Objects.equals(fxLeitaKomustadur.getText(), flightDestination) && !Objects.equals(fxLeitaHotelStadsetning.getText(), flightDestination)) {
                 fxFlights.getSelectionModel().clearSelection();
+                fxDayTours.getSelectionModel().clearSelection();
                 fxLeitaKomustadur.setText(flightDestination);
+                fxleitaStadsetningFerdar.setText(flightDestination);
                 leitaIFlugum();
+                leitaIDagsferdum();
             } else {
                 fxHotelNafn.setText("Nafn hótels: " + h.getHotelName());
                 fxHotelStadsetning.setText("Staðsetning hótels: " + h.getHotelLocation());
@@ -391,12 +413,21 @@ public class TripPlannerController {
     public void dayTourValid(MouseEvent mouseEvent) {
         DayTours d = fxDayTours.getSelectionModel().getSelectedItem();
         if (d != null) {
-            fxHeitiDagsferd.setText("Heiti dagsferðar: " + d.getTourName());
-            fxDagsferdStadsetning.setText("Staðsetning dagsferðar: " + d.getTourLocation());
-            fxDagsferdDagsetning.setText("Dagsetning dagsferðar: " + d.getTourDate());
-            fxDagsferdID.setText("ID dagsferðar: " + d.getTourId());
-            fxDagsferdVerd.setText("Verð: " + d.getPrice());
-            uppfaeraPakkaverd();
+            if (!Objects.equals(fxLeitaKomustadur.getText(), d.getTourLocation()) && !Objects.equals(fxLeitaHeitiFerdar.getText(), d.getTourName())) {
+                fxFlights.getSelectionModel().clearSelection();
+                fxHotels.getSelectionModel().clearSelection();
+                fxLeitaKomustadur.setText(d.getTourLocation());
+                fxLeitaHotelStadsetning.setText(d.getTourLocation());
+                leitaIFlugum();
+                leitaIHotelum();
+            } else {
+                fxHeitiDagsferd.setText("Heiti dagsferðar: " + d.getTourName());
+                fxDagsferdStadsetning.setText("Staðsetning dagsferðar: " + d.getTourLocation());
+                fxDagsferdDagsetning.setText("Dagsetning dagsferðar: " + d.getTourDate());
+                fxDagsferdID.setText("ID dagsferðar: " + d.getTourId());
+                fxDagsferdVerd.setText("Verð: " + d.getPrice());
+                uppfaeraPakkaverd();
+            }
         }
     }
 
@@ -433,4 +464,5 @@ public class TripPlannerController {
             e.printStackTrace();
         }
     }
+
 }
