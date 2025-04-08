@@ -56,7 +56,8 @@ public class LogInController {
         String password = fxLykilord.getText();
 
         if (!isValidInput(username) || !isValidInput(password)) {
-            fxLoginInfo.setText("Username and password must be at least 3 characters long and cannot be empty.");
+            fxLoginInfo.setText("Notendanafn og lykilorð verða að vera að minnsta kosti 3 stafir.");
+
         } else {
             login(username, password);
         }
