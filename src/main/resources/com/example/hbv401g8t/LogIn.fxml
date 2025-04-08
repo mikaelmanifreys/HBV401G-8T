@@ -1,24 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hbv401g8t.LogInController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hbv401g8t.LogInController">
    <children>
       <VBox layoutX="14.0" layoutY="8.0" prefHeight="382.0" prefWidth="574.0">
          <children>
-            <Label prefHeight="134.0" prefWidth="582.0" text="                                                                             Innskráning" />
+            <Label alignment="CENTER" prefHeight="117.0" prefWidth="336.0" text="                                                                             Innskráning" textAlignment="CENTER" />
             <HBox prefHeight="161.0" prefWidth="574.0">
                <children>
-                  <VBox prefHeight="162.0" prefWidth="180.0" />
-                  <VBox prefHeight="162.0" prefWidth="194.0">
+                  <VBox prefHeight="169.0" prefWidth="577.0">
                      <children>
-                        <Label prefHeight="31.0" prefWidth="202.0" text="Notandanafn:" />
-                        <TextField fx:id="fxNotandanafn" />
-                        <Label text="Lykilorð:" />
-                        <PasswordField fx:id="fxLykilord" />
-                        <Button fx:id="fxSkraInnButton" mnemonicParsing="false" onAction="#SkraInn" text="Skrá Inn" />
-                        <Label fx:id="fxLoginInfo" prefHeight="36.0" prefWidth="200.0" textAlignment="CENTER" />
+                        <Label prefHeight="31.0" prefWidth="202.0" text="Notandanafn:">
+                           <VBox.margin>
+                              <Insets left="100.0" />
+                           </VBox.margin></Label>
+                        <TextField fx:id="fxNotandanafn">
+                           <VBox.margin>
+                              <Insets left="100.0" right="100.0" top="5.0" />
+                           </VBox.margin></TextField>
+                        <Label prefHeight="17.0" prefWidth="57.0" text="Lykilorð:">
+                           <VBox.margin>
+                              <Insets left="100.0" top="10.0" />
+                           </VBox.margin></Label>
+                        <PasswordField fx:id="fxLykilord">
+                           <VBox.margin>
+                              <Insets left="100.0" right="100.0" top="5.0" />
+                           </VBox.margin></PasswordField>
+                        <Button fx:id="fxSkraInnButton" mnemonicParsing="false" onAction="#SkraInn" prefHeight="26.0" prefWidth="241.0" text="Skrá Inn">
+                           <VBox.margin>
+                              <Insets left="200.0" right="200.0" top="20.0" />
+                           </VBox.margin></Button>
+                        <Label fx:id="fxLoginInfo" alignment="CENTER" prefHeight="17.0" prefWidth="587.0" textFill="#d02020">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
+                           </VBox.margin></Label>
                      </children>
                   </VBox>
                </children>
