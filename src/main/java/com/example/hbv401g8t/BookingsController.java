@@ -49,6 +49,7 @@ public class BookingsController {
             fxBokanir.getItems().remove(selectedIndex);
         }
         fxBokunUpplysingarLabel.setText("");
+
     }
 
     public void tilBaka(ActionEvent actionEvent) {

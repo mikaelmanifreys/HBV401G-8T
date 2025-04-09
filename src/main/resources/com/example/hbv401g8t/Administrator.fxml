@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hbv401g8t.AdministratorController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hbv401g8t.AdministratorController">
     <children>
           <VBox layoutX="9.0" prefHeight="400.0" prefWidth="152.0">
               <children>
@@ -38,6 +32,8 @@
                   </HBox>
                   <Label text="Verð" />
                   <TextField fx:id="fxFlugVerd" />
+            <Label prefHeight="24.0" prefWidth="182.0" text="Laus Sæti" />
+            <TextField fx:id="fxLausSaeti" />
               </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -53,6 +49,8 @@
                   <TextField fx:id="fxHotelId" />
                   <Label text="Verð á nótt" />
                   <TextField fx:id="fxHotelVerd" />
+            <Label prefHeight="19.0" prefWidth="162.0" text="Laus Herbergi" />
+            <TextField fx:id="fxLausHerbergi" />
               </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

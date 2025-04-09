@@ -8,20 +8,20 @@ public class MockData {
 
     public static List<Flights> getMockFlights() {
         return Arrays.asList(
-                new Flights("FI123", "Reykjavik", "New York", LocalDate.now(), 10, 30, 12, 45, 5000),
-                new Flights("FI124", "Reykjavik", "London", LocalDate.now(), 10, 30, 12, 45, 1500),
-                new Flights("FI125", "Reykjavik", "Suðurnes", LocalDate.now(), 10, 30, 12, 45, 2000),
-                new Flights("FI126", "Reykjavik", "Austurland", LocalDate.now(), 10, 30, 12, 45, 2500),
-                new Flights("FI127", "Reykjavik", "Vesturland", LocalDate.now(), 10, 30, 12, 45, 3000),
-                new Flights("FI128", "Akureyri", "Höfuðborgarsvæði", LocalDate.now(), 10, 30, 12, 45, 3500),
-                new Flights("FI129", "Reykjavik", "Suðurland", LocalDate.now(), 10, 30, 12, 45, 4000)
+                new Flights("FI123", "Reykjavik", "New York", LocalDate.now(), 10, 30, 12, 45, 5000, 30),
+                new Flights("FI124", "Reykjavik", "London", LocalDate.now(), 10, 30, 12, 45, 1500, 60),
+                new Flights("FI125", "Reykjavik", "Suðurnes", LocalDate.now(), 10, 30, 12, 45, 2000, 40),
+                new Flights("FI126", "Reykjavik", "Austurland", LocalDate.now(), 10, 30, 12, 45, 2500, 50),
+                new Flights("FI127", "Reykjavik", "Vesturland", LocalDate.now(), 10, 30, 12, 45, 3000, 30),
+                new Flights("FI128", "Akureyri", "Höfuðborgarsvæði", LocalDate.now(), 10, 30, 12, 45, 3500, 20),
+                new Flights("FI129", "Reykjavik", "Suðurland", LocalDate.now(), 10, 30, 12, 45, 4000, 30)
         );
     }
 
     public static List<Hotels> getMockHotels() {
         return Arrays.asList(
-                new Hotels("Hótel New York", "New York", 1, 10000),
-                new Hotels("Hótel London", "London", 2, 20000)
+                new Hotels("Hótel New York", "New York", 1, 10000, 20),
+                new Hotels("Hótel London", "London", 2, 20000, 30)
         );
     }
 

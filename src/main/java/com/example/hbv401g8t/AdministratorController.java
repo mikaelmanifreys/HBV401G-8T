@@ -37,6 +37,8 @@ public class AdministratorController {
     public TextField fxFlugVerd;
     public TextField fxDagsferdVerd;
     public TextField fxHotelVerd;
+    public TextField fxLausHerbergi;
+    public TextField fxLausSaeti;
 
     @FXML
     public void initialize() {
@@ -62,6 +64,7 @@ public class AdministratorController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void baetaVid(ActionEvent actionEvent) {
@@ -74,12 +77,14 @@ public class AdministratorController {
         int flugKomutimiMin = (int) fxFlugKomutimiMin.getValue();
         String flugnumer = fxFlugnumer.getText();
         int hamarksverd = Integer.parseInt(fxFlugVerd.getText());
-        Flights flug = new Flights(flugnumer, flugFra, flugTil, flugDagsetning, flugBrottfararTimiKlst, flugBrottfararTimiMin, flugKomutimiKlst, flugKomutimiMin, hamarksverd);
+        int lausSaeti = Integer.parseInt(fxLausSaeti.getText());
+        Flights flug = new Flights(flugnumer, flugFra, flugTil, flugDagsetning, flugBrottfararTimiKlst, flugBrottfararTimiMin, flugKomutimiKlst, flugKomutimiMin, hamarksverd, lausSaeti);
         String hotelNafn = fxHotelNafn.getText();
         String hotelStadsetning = fxHotelStadsetning.getText();
         int hotelId = Integer.parseInt(fxHotelId.getText());
         int hotelVerd = Integer.parseInt(fxHotelVerd.getText());
-        Hotels hotel = new Hotels(hotelNafn, hotelStadsetning, hotelId, hotelVerd);
+        int lausHerbergi = Integer.parseInt(fxLausHerbergi.getText());
+        Hotels hotel = new Hotels(hotelNafn, hotelStadsetning, hotelId, hotelVerd, lausHerbergi);
         String dayTourNafn = fxDayTourNafn.getText();
         int dayTourId = Integer.parseInt(fxDayTourId.getText());
         String dayTourStadsetning = fxDayTourStadsetning.getText();

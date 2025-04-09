@@ -5,12 +5,14 @@ public class Hotels {
     private String name;
     private String location;
     private int price;
+    private int availableRooms;
 
-    public Hotels(String name, String location, int hotelId, int price) {
+    public Hotels(String name, String location, int hotelId, int price, int availableRooms) {
         this.hotelId = hotelId;
         this.name = name;
         this.location = location;
         this.price = price;
+        this.availableRooms = availableRooms;
     }
 
     @Override
@@ -21,6 +23,10 @@ public class Hotels {
 
     public String getHotelDetails() {
         return "Hotel " + name + " ID: " + hotelId + " Location: " + location;
+    }
+
+    public int getAvailableRooms() {
+        return availableRooms;
     }
 
     public String getHotelName() {
